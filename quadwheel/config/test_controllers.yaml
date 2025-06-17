@@ -1,0 +1,32 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 1000
+    use_sim_time: true
+
+    joint_broad:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+#Test Controller
+joint_cont:
+  ros__parameters:
+    type: joint_trajectory_controller/JointTrajectoryController
+    joints:
+      - chassis_C1_joint
+      - chassis_C2_joint
+      - chassis_C3_joint
+      - chassis_C4_joint
+    command_interfaces:
+      - velocity
+    state_interfaces:
+      - position
+      - velocity
+    allow_partial_joints_goal: true
+    state_publish_rate: 100.0
+    action_monitor_rate: 20.0
+    open_loop_control: true
+
+#Use RQT_joint_trajectory to upload to controller to test it
+
+
+
+

@@ -1,0 +1,48 @@
+<?xml version='1.0'?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:macro name="roller" params="name parent xyz rpy">
+  <link name="roller_${name}_rim_${parent}_link">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <inertia ixx="1e-6" ixy="0.0" ixz="0.0" iyy="1e-6" iyz="0.0" izz="1e-7"/>
+      <mass value="0.010"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <cylinder radius="0.01" length="0.03"/>
+      </geometry>
+    </visual>
+
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <cylinder radius="0.01" length="0.03"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="roller_${name}_rim_${parent}_joint" type="continuous">
+    <parent link="rim_${parent}_link"/>
+    <child link="roller_${name}_rim_${parent}_link"/>
+    <axis xyz="0 0 1"/>
+    <origin xyz="${xyz}" rpy="${rpy}"/>
+  </joint>
+
+  <gazebo reference="roller_${name}_rim_${parent}_link">
+    <mu1 value="100"/>
+    <mu2 value="100"/>
+    <visual>
+      <material>
+        <ambient>0.6 0.6 0.6 1</ambient>
+        <diffuse>0.6 0.6 0.6 1</diffuse>
+        <specular>0.6 0.6 0.6 1</specular>
+      </material>
+    </visual>
+  </gazebo>
+
+  </xacro:macro>
+
+
+
+</robot>

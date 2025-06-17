@@ -1,0 +1,10 @@
+publisher_forward_velocity_controller:
+  ros__parameters:
+    wait_sec_between_publish: 10
+    publish_topic: "/velo_cont/commands"
+
+    goal_names: ["velocity1",velocity2,velocity3,velocity4]
+    velocity1: [50.0, 0.0, -50.0, 0.0]
+    velocity2: [0.0, -50.0, 0.0, 50.0]
+    velocity3: [-50.0, 0.0, 50.0, 0.0]
+    velocity4: [0.0, 50.0, 0.0, -50.0]
