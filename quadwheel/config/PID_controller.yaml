@@ -1,0 +1,28 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 1000
+    use_sim_time: true
+
+    joint_broad:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+    PID_cont:
+      type: pid_controller/PidController
+
+PID_cont:
+  ros__parameters:
+    dof_names:
+      - chassis_C1_joint
+      - chassis_C2_joint
+      - chassis_C3_joint
+      - chassis_C4_joint
+
+    command_interface: velocity
+
+    reference_and_state_interfaces: ["velocity"]
+
+    gains:
+      chassis_C1_joint: {p: 0.5, i: 0.3, d: 0.4, i_clamp_max: 5.0, i_clamp_min: -5.0, feedforward_gain: 1.0}
+      chassis_C2_joint: {p: 0.5, i: 0.3, d: 0.4, i_clamp_max: 5.0, i_clamp_min: -5.0, feedforward_gain: 1.0}
+      chassis_C3_joint: {p: 0.5, i: 0.3, d: 0.4, i_clamp_max: 5.0, i_clamp_min: -5.0, feedforward_gain: 1.0}
+      chassis_C4_joint: {p: 0.5, i: 0.3, d: 0.4, i_clamp_max: 5.0, i_clamp_min: -5.0, feedforward_gain: 1.0}

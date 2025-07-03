@@ -1,0 +1,5 @@
+<library path="omniwheel_drive_controller">
+  <class name="omniwheel_drive_controller/OmniwheelDriveController"
+         type="omniwheel_drive_controller::OmniwheelDriveController" base_class_type="controller_interface::ChainableControllerInterface">
+  </class>
+</library>

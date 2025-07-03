@@ -34,14 +34,21 @@ import xacro # type: ignore
 def generate_launch_description():
 
 	# Names
+	# Base Files
 	package_name = 'quadwheel'
 	robot_name = '4_wheel_omni'
 	world_name = 'lab_world.world'
 	urdf_name = 'main.xacro'
 	urdf_folder_name = 'model'
-	controller_name = 'my_controllers.yaml'
+	rviz_param_file = 'rviz_config.rviz'
+
+	# Controller Setup
+	## WHEN CHANGING CONTROLLERS MAKE SURE TO CHANGE THESE VALUES !!AND!! THE CONTROLLER FILE NAME IN ROS2_CONTROL.XACRO FILE!!!!
+	controller_file = 'omni_controller.yaml'
+	controller_name = 'omni_cont'
 	bridge_param_file = 'gz_bridge_params.yaml'
 
+	
 	#-------------------------------------------------------------------------------
 	# Variables
 	world = LaunchConfiguration('world') 
@@ -49,8 +56,9 @@ def generate_launch_description():
 	# Paths
 	path_to_urdf = os.path.join(get_package_share_directory(package_name),urdf_folder_name,urdf_name)
 	path_to_world = os.path.join(get_package_share_directory(package_name),urdf_folder_name,world_name)
-	path_to_controller = os.path.join(get_package_share_directory(package_name),'config',controller_name)
+	path_to_controller = os.path.join(get_package_share_directory(package_name),'config',controller_file)
 	path_to_bridge_params = os.path.join(get_package_share_directory(package_name),'config',bridge_param_file)
+	path_to_rviz_params = os.path.join(get_package_share_directory(package_name),'config',rviz_param_file)
 
 	# Robot Description 
 	robot_description = xacro.process_file(path_to_urdf).toxml()
@@ -105,6 +113,7 @@ def generate_launch_description():
         	executable='rviz2',
         	name='rviz2',
         	output='screen',
+			arguments=[path_to_rviz_params],
     	)
 	
 	# Spawn Gazebo Model - Same as gazebo_ros spawn_eneity.py from old versions
@@ -128,14 +137,18 @@ def generate_launch_description():
 
 	# Controller Spawner
 	# Wheel Controller
-	velocity_controller_spawner = Node(
+	controller_spawner = Node(
 		package='controller_manager',
 		executable='spawner',
 		parameters=[{'robot_description': robot_description}],
         arguments=[
-			'velo_cont',
+			controller_name,
 			'--param-file',
 			path_to_controller,
+            '--controller-ros-args',
+            '-r /omni_cont/tf_odometry:=/tf',
+            '--controller-ros-args',
+            '-r /omni_cont/reference:=/cmd_vel',
 			],
 	)
 
@@ -165,7 +178,7 @@ def generate_launch_description():
 	ld.add_action(rviz_node)
 
 	ld.add_action(joint_broad_spawner)
-	ld.add_action(velocity_controller_spawner)
+	ld.add_action(controller_spawner)
 	
 	ld.add_action(ros_gz_bridge_node)
 

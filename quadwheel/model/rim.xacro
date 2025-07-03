@@ -5,7 +5,7 @@
   <link name="rim_${name}_link">
     <inertial>
       <origin xyz="0 0 -0.0182" rpy="0 0 0" />
-      <mass value="0.10"/>
+      <mass value="0.1"/>
       <inertia ixx="7.6e-5" ixy="0.0" ixz="0.0" iyy="7.6e-5" iyz="0.0" izz="0.000125"/>
     </inertial>
 

@@ -21,16 +21,17 @@ def generate_launch_description():
 
     # Names
     package_name = 'quadwheel'
-    publisher_name = 'velocity_publisher.yaml'
+    publisher_file = 'velocity_publisher.yaml'
+    publisher_name = 'publisher_forward_velocity_controller'
 
     #-------------------------------------------------------------------------------
     # Paths
-    path_to_publisher = os.path.join(get_package_share_directory(package_name),'config',publisher_name)
+    path_to_publisher = os.path.join(get_package_share_directory(package_name),'config',publisher_file)
 
-    velocity_publisher_node = Node(
+    publisher_node = Node(
         package="ros2_controllers_test_nodes",
         executable="publisher_forward_position_controller",
-        name="publisher_forward_velocity_controller",
+        name=publisher_name,
         parameters=[path_to_publisher],
         output="both",
     )
@@ -38,6 +39,6 @@ def generate_launch_description():
     #-----------------------------------------------------------
     ld = LaunchDescription()
 
-    ld.add_action(velocity_publisher_node)
+    ld.add_action(publisher_node)
 
     return ld
