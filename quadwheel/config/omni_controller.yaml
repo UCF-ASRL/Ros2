@@ -1,6 +1,6 @@
 controller_manager:
   ros__parameters:
-    update_rate: 1000
+    update_rate: 10
     use_sim_time: true
 
     joint_broad:
@@ -19,9 +19,9 @@ omni_cont:
     rear_left_wheel_command_joint_name: "chassis_C4_joint"
 
     kinematics:
-      base_frame_offset: { x: 0.0, y: 0.0, theta: 0.0 }
-      wheels_radius: 0.0254
-      sum_of_robot_center_projection_on_X_Y_axis: 1.0
+      base_frame_offset: { x: 0.0, y: 0.0, theta: 0.0 } #Keep this 0
+      wheels_radius: 0.0254 
+      sum_of_robot_center_projection_on_X_Y_axis: 1.0 #This is the distance from the robot center to wheel center
 
     base_frame_id: "base_link"
     odom_frame_id: "odom"

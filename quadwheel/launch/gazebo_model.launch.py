@@ -18,7 +18,8 @@ from launch_ros.substitutions import FindPackageShare # type: ignore
 
 # Core structure
 from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription # type: ignore
+from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription, RegisterEventHandler # type: ignore
+from launch.event_handlers import OnProcessExit # type: ignore
 from launch.launch_description_sources import PythonLaunchDescriptionSource # type: ignore
 from launch.substitutions import LaunchConfiguration, PathJoinSubstitution, TextSubstitution # type: ignore
 
@@ -163,7 +164,7 @@ def generate_launch_description():
 			],
     )
 
-
+	
 	#-----------------------------------------------------------
 	# here we create an empty launch description object
 	ld = LaunchDescription()
