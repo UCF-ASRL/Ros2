@@ -14,6 +14,9 @@ colcon build
 source ~/ws_quadwheel/install/setup.bash
 ```
 ```
+source ~/ros2_ws/install/setup.bash
+```
+```
 ros2 launch quadwheel gazebo_model.launch.py
 ```
 
