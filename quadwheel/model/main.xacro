@@ -1,62 +1,16 @@
 <?xml version='1.0'?>
 <robot name="4_wheel_omni" xmlns:xacro="http://www.ros.org/wiki/xacro">
-  <xacro:include filename="$(find quadwheel)/model/connector.xacro"/>
-
-  <!-- World Link -->
-  <link name="base_link" />
-  <joint name="base_to_chassis" type="fixed">
-    <parent link="base_link"/>
-    <child link="chassis"/>
-    <origin xyz="0 0 0" rpy="0 0 0" />
-  </joint>
-
-  <!--Base Footprint-->
-  <link name="base_footprint" />
-  <joint name="base_to_footprint" type="fixed">
-    <parent link="base_link"/>
-    <child link="base_footprint"/>
-    <origin xyz="0 0 0" rpy="0 0 0" />
-  </joint>
-
-  <!-- Chassis -->
-  <link name="chassis">
-    <visual>
-      <origin xyz="0 0 0" rpy="0 0 0" />
-      <geometry>
-        <mesh filename="file://$(find quadwheel)/meshes/chassis.stl" />
-      </geometry>
-      <material name="">
-        <color rgba="1 1 0 1" />
-      </material>
-    </visual>
-    <inertial>
-      <origin xyz="0 0 0" rpy="0 0 0" />
-      <mass value="16.004"/>
-      <inertia ixx="0.0001" ixy="0.0" ixz="0.0" iyy="0.0001" iyz="0.0" izz="0.0001"/>
-    </inertial>
-
-  </link>
-
-  <gazebo reference="chassis">
-    <visual>
-      <material>
-        <ambient>0.9 0.9 0 1</ambient>
-        <diffuse>0.9 0.9 0 1</diffuse>
-        <specular>0.9 0.9 0 1</specular>
-      </material>
-    </visual>
-  </gazebo>
-
-  <!--Wheel Rims -->
-  <xacro:connector name="1" parent="chassis" xyz="0.228 0.228 0.01" rpy="1.57 0 -0.7854"/>
-  <xacro:connector name="2" parent="chassis" xyz="0.228 -0.228 0.01" rpy="1.57 0 -2.3562"/>
-  <xacro:connector name="3" parent="chassis" xyz="-0.228 -0.228 0.01" rpy="1.57 0 -3.9270"/>
-  <xacro:connector name="4" parent="chassis" xyz="-0.228 0.228 0.01" rpy="1.57 0 -5.4978"/>
-
+ 
+  <!-- Robot -->
+  <xacro:include filename="$(find quadwheel)/model/chassis.xacro"/>
+  
   <!-- Control -->
   <xacro:include filename="$(find quadwheel)/model/ros2_control.xacro"/>
 
-  <!--Include The Arm-->
+  <!-- Cameras -->
+  <!--<xacro:include filename="$(find quadwheel)/model/cameras.xacro"/>-->
+
+  <!-- Arm -->
   
 
 

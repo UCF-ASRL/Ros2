@@ -18,6 +18,11 @@
       filename="gz-sim-scene-broadcaster-system"
       name="gz::sim::systems::SceneBroadcaster">
     </plugin>
+    <plugin
+      filename="gz-sim-sensors-system"
+      name="gz::sim::systems::Sensors">
+      <render_engine>ogre2</render_engine>
+    </plugin>
 
     <!-- Light -->
     <light type="directional" name="sun">
@@ -47,7 +52,10 @@
           </geometry>
           <surface>
             <friction>
-              <ode/>
+              <ode>
+                <mu>100</mu>
+                <mu2>100</mu2>
+              </ode>
             </friction>
             <bounce/>
             <contact/>
@@ -73,6 +81,48 @@
   <!-- Gravity -->
   <gravity>0 0 -9.8</gravity>
 
+  <!-- Cameras -->
+  <model name='camera_1'>
+    <link name='camera_1_link'>
+      <pose>0 0 5 0 1.5707 0 </pose>
+      <gravity>0</gravity>
+      
+      <visual name="camera_1_visual">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.015 0.08 0.022</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>0 0 0 1.0</ambient>
+          <diffuse>0 0 0 1.0</diffuse>
+          <specular>0.0 0.0 0.0 1.0</specular>
+          <emissive>0.0 0.0 0.0 1.0</emissive>
+        </material>
+      </visual>
+
+      <sensor name="camera_1" type="camera">
+        <visualize>true</visualize>
+        <update_rate>10</update_rate>
+        <topic>camera/image_raw</topic>
+        <gz_frame_id>camera_1_link</gz_frame_id>
+        <camera>
+          <camera_info_topic>camera/camera_info</camera_info_topic>
+          <horizontal_fov>1.089</horizontal_fov>
+          <image>
+            <format>R8G8B8</format>
+            <width>640</width>
+            <height>480</height>
+          </image>
+          <clip>
+            <near>0.05</near>
+            <far>8.0</far>
+          </clip>
+        </camera>
+      </sensor>
+    </link>
+  </model>
 
 
   </world>

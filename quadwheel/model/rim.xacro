@@ -5,14 +5,14 @@
   <link name="rim_${name}_link">
     <inertial>
       <origin xyz="0 0 -0.0182" rpy="0 0 0" />
-      <mass value="0.1"/>
-      <inertia ixx="7.6e-5" ixy="0.0" ixz="0.0" iyy="7.6e-5" iyz="0.0" izz="0.000125"/>
+      <mass value="0.20"/>
+      <inertia ixx="6.3068e-04" ixy="0.0" ixz="0.0" iyy="6.3068e-04" iyz="0.0" izz="0.0012"/>
     </inertial>
 
     <visual>
       <origin xyz="0 0 -0.0182" rpy="0 0 0" />
       <geometry>
-        <cylinder radius="0.050" length="0.0364"/>
+        <cylinder radius="0.076" length="0.0381"/>
       </geometry>
     </visual>
 
@@ -25,24 +25,29 @@
     <origin xyz = "${xyz}" rpy = "${rpy}"/>
   </joint>
 
-<xacro:roller name="1" parent="${name}"  xyz="0.0415 0 -0.0284" rpy="1.57 0 0"/>
-<xacro:roller name="2" parent="${name}"  xyz="0.0390 0.0142 -0.008" rpy="1.57 0 0.3491"/>
-<xacro:roller name="3" parent="${name}"  xyz="0.0318 0.0267 -0.0284" rpy="1.57 0 0.6981"/>
-<xacro:roller name="4" parent="${name}"  xyz="0.0208 0.0359 -0.008" rpy="1.57 0 1.0472"/>
-<xacro:roller name="5" parent="${name}"  xyz="0.0072 0.0409 -0.0284" rpy="1.57 0 1.3963"/>
-<xacro:roller name="6" parent="${name}"  xyz="-0.0072 0.0409 -0.008" rpy="1.57 0 1.7453"/>
-<xacro:roller name="7" parent="${name}"  xyz="-0.0208 0.0359 -0.0284" rpy="1.57 0 2.0944"/>
-<xacro:roller name="8" parent="${name}"  xyz="-0.0318 0.0267 -0.008" rpy="1.57 0 2.4435"/>
-<xacro:roller name="9" parent="${name}"  xyz="-0.0390 0.0142 -0.0284" rpy="1.57 0 2.7925"/>
-<xacro:roller name="10" parent="${name}"  xyz="-0.0415 0 -0.008" rpy="1.57 0 3.1416"/>
-<xacro:roller name="11" parent="${name}"  xyz="-0.0390 -0.0142 -0.0284" rpy="1.57 0 3.4907"/>
-<xacro:roller name="12" parent="${name}"  xyz="-0.0318 -0.0267 -0.008" rpy="1.57 0 3.8397"/>
-<xacro:roller name="13" parent="${name}"  xyz="-0.0208 -0.0359 -0.0284" rpy="1.57 0 4.1888"/>
-<xacro:roller name="14" parent="${name}"  xyz="-0.00072 -0.0409 -0.008" rpy="1.57 0 4.5379"/>
-<xacro:roller name="15" parent="${name}"  xyz="0.0072 -0.0409 -0.0284" rpy="1.57 0 4.8869"/>
-<xacro:roller name="16" parent="${name}"  xyz="0.0208 -0.0359 -0.008" rpy="1.57 0 5.2360"/>
-<xacro:roller name="17" parent="${name}"  xyz="0.0318 -0.0267 -0.0284" rpy="1.57 0 5.5851"/>
-<xacro:roller name="18" parent="${name}"  xyz="0.0390 -0.0142 -0.008" rpy="1.57 0 5.9341"/>
+<xacro:roller name="1" parent="${name}"  xyz="0.068 0 -0.0091" rpy="1.57 0 0"/>
+<xacro:roller name="2" parent="${name}"  xyz="0.0647 0.021 -0.0291" rpy="1.57 0 0.3142"/>
+<xacro:roller name="3" parent="${name}"  xyz="0.055 0.04 -0.0091" rpy="1.57 0 0.6283"/>
+<xacro:roller name="4" parent="${name}"  xyz="0.04 0.055 -0.0291" rpy="1.57 0 0.9425"/>
+<xacro:roller name="5" parent="${name}"  xyz="0.021 0.0647 -0.0091" rpy="1.57 0 1.2566"/>
+<xacro:roller name="6" parent="${name}"  xyz="0 0.068 -0.0291" rpy="1.57 0 1.5708"/>
+<xacro:roller name="7" parent="${name}"  xyz="-0.021 0.0647 -0.0091" rpy="1.57 0 1.8850"/>
+<xacro:roller name="8" parent="${name}"  xyz="-0.04 0.055 -0.0291" rpy="1.57 0 2.1991"/>
+<xacro:roller name="9" parent="${name}"  xyz="-0.055 0.04 -0.0091" rpy="1.57 0 2.5133"/>
+<xacro:roller name="10" parent="${name}"  xyz="-0.0647 0.021 -0.0291" rpy="1.57 0 2.8274"/>
+<xacro:roller name="11" parent="${name}"  xyz="-0.068 0 -0.0091" rpy="1.57 0 3.1416"/>
+<xacro:roller name="12" parent="${name}"  xyz="-0.0647 -0.021 -0.0291" rpy="1.57 0 3.4558"/>
+<xacro:roller name="13" parent="${name}"  xyz="-0.055 -0.04 -0.0091" rpy="1.57 0 3.7699"/>
+<xacro:roller name="14" parent="${name}"  xyz="-0.04 -0.055 -0.0291" rpy="1.57 0 4.0841"/>
+<xacro:roller name="15" parent="${name}"  xyz="-0.021 -0.0647 -0.0091" rpy="1.57 0 4.3982"/>
+<xacro:roller name="16" parent="${name}"  xyz="0 -0.068 -0.0291" rpy="1.57 0 4.7124"/>
+<xacro:roller name="17" parent="${name}"  xyz="0.021 -0.0647 -0.0091" rpy="1.57 0 5.0265"/>
+<xacro:roller name="18" parent="${name}"  xyz="0.04 -0.055 -0.0291" rpy="1.57 0 5.3407"/>
+<xacro:roller name="19" parent="${name}"  xyz="0.055 -0.04 -0.0091" rpy="1.57 0 5.6549"/>
+<xacro:roller name="20" parent="${name}"  xyz="0.0647 -0.021 -0.0291" rpy="1.57 0 5.9690"/>
+
+
+
 
 <gazebo reference="rim_${name}_link">
   <visual>

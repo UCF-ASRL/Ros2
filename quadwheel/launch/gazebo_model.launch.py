@@ -88,25 +88,16 @@ def generate_launch_description():
 		output='both',
         	parameters=[{'robot_description': robot_description,
 			     'use_sim_time': True,
+				 'use_ros2_control': True
 		           }],     
 	)
 		
-	# Joint State Publisher
-	joint_state_publisher_node = Node(
-       		package='joint_state_publisher',
-        	executable='joint_state_publisher',
-        	name='joint_state_publisher',
-        	parameters=[{'robot_description': robot_description,
-			     'use_sim_time': True,
-		           }],
-      
-   	)
-
-	joint_state_publisher_gui_node = Node(
-        	package='joint_state_publisher_gui',
-        	executable='joint_state_publisher_gui',
-        	name='joint_state_publisher_gui',
-	)
+	#joint_state_publisher_gui_node = Node(
+    #    	package='joint_state_publisher_gui',
+    #   	executable='joint_state_publisher_gui',
+    #    	name='joint_state_publisher_gui',
+	#		parameters=[{'use_sim_time' : True}],
+	#)
 	
 	# RVIZ
 	rviz_node = Node(
@@ -164,6 +155,13 @@ def generate_launch_description():
 			],
     )
 
+	# Camera Bridge
+	ros_gz_image_bridge_node = Node(
+        package="ros_gz_image",
+        executable="image_bridge",
+        arguments=["/camera/image_raw"],
+    )
+
 	
 	#-----------------------------------------------------------
 	# here we create an empty launch description object
@@ -174,13 +172,14 @@ def generate_launch_description():
 	ld.add_action(gz_server)
 	ld.add_action(spawn_model_node)
 	ld.add_action(robot_state_publisher_node)
-	ld.add_action(joint_state_publisher_node)
-	ld.add_action(joint_state_publisher_gui_node)
+	# ld.add_action(joint_state_publisher_node)
+	# ld.add_action(joint_state_publisher_gui_node)
 	ld.add_action(rviz_node)
 
 	ld.add_action(joint_broad_spawner)
 	ld.add_action(controller_spawner)
 	
 	ld.add_action(ros_gz_bridge_node)
+	ld.add_action(ros_gz_image_bridge_node)
 
 	return ld
