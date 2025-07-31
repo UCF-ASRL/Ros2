@@ -159,7 +159,12 @@ def generate_launch_description():
 	ros_gz_image_bridge_node = Node(
         package="ros_gz_image",
         executable="image_bridge",
-        arguments=["/camera/image_raw"],
+        arguments=["/camera_1/image_raw",
+				   "/camera_2/image_raw",
+				   "/camera_3/image_raw",
+				   "/camera_4/image_raw",
+				   "/camera_5/image_raw",
+				   "/camera_6/image_raw"],
     )
 
 	
