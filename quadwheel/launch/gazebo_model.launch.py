@@ -105,7 +105,7 @@ def generate_launch_description():
         	executable='rviz2',
         	name='rviz2',
         	output='screen',
-			arguments=[path_to_rviz_params],
+			arguments=['-d',path_to_rviz_params],
     	)
 	
 	# Spawn Gazebo Model - Same as gazebo_ros spawn_eneity.py from old versions
@@ -159,14 +159,26 @@ def generate_launch_description():
 	ros_gz_image_bridge_node = Node(
         package="ros_gz_image",
         executable="image_bridge",
-        arguments=["/camera_1/image_raw",
-				   "/camera_2/image_raw",
-				   "/camera_3/image_raw",
-				   "/camera_4/image_raw",
-				   "/camera_5/image_raw",
-				   "/camera_6/image_raw"],
+        arguments=["/camera_1/image",
+				   "/camera_2/image",
+				   "/camera_3/image",
+				   "/camera_4/image",
+				   "/camera_5/image",
+				   "/camera_6/image"],
     )
 
+	# Static Transfrom Publishers for Camera Point Clouds
+	camera_1_transform_node = Node(
+		package="tf2_ros",
+		executable="static_transform_publisher",
+		arguments = ["-2.44","-2.64","2.54","0.785","0.785","0", "odom", "camera_1_link"],
+	)
+
+	camera_2_transform_node = Node(
+		package="tf2_ros",
+		executable="static_transform_publisher",
+		arguments = ["-2.44","-2.64","2.54","0.785","0.785","0", "odom", "camera_2_link"],
+	)
 	
 	#-----------------------------------------------------------
 	# here we create an empty launch description object
@@ -186,5 +198,8 @@ def generate_launch_description():
 	
 	ld.add_action(ros_gz_bridge_node)
 	ld.add_action(ros_gz_image_bridge_node)
+
+	ld.add_action(camera_1_transform_node)
+	ld.add_action(camera_2_transform_node)
 
 	return ld

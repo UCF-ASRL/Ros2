@@ -1,5 +1,5 @@
 <?xml version="1.0" ?>
-<sdf version="1.5">
+<sdf version="1.6">
   <world name="lab_world"> 
     <physics name="1ms" type="ignored">
       <max_step_size>0.003</max_step_size>
@@ -110,10 +110,10 @@
         </material>
       </visual>
 
-      <sensor name="camera_1" type="camera">
+      <sensor name="camera_1" type="rgbd_camera">
         <visualize>true</visualize>
         <update_rate>10</update_rate>
-        <topic>camera_1/image_raw</topic>
+        <topic>camera_1</topic>
         <gz_frame_id>camera_1_link</gz_frame_id>
         <camera>
           <camera_info_topic>camera_1/camera_info</camera_info_topic>
@@ -153,10 +153,10 @@
         </material>
       </visual>
 
-      <sensor name="camera_2" type="camera">
+      <sensor name="camera_2" type="rgbd_camera">
         <visualize>true</visualize>
         <update_rate>10</update_rate>
-        <topic>camera_2/image_raw</topic>
+        <topic>camera_2</topic>
         <gz_frame_id>camera_2_link</gz_frame_id>
         <camera>
           <camera_info_topic>camera_2/camera_info</camera_info_topic>
@@ -196,10 +196,10 @@
         </material>
       </visual>
 
-      <sensor name="camera_3" type="camera">
+      <sensor name="camera_3" type="rgbd_camera">
         <visualize>true</visualize>
         <update_rate>10</update_rate>
-        <topic>camera_3/image_raw</topic>
+        <topic>camera_3</topic>
         <gz_frame_id>camera_3_link</gz_frame_id>
         <camera>
           <camera_info_topic>camera_3/camera_info</camera_info_topic>
@@ -239,10 +239,10 @@
         </material>
       </visual>
 
-      <sensor name="camera_4" type="camera">
+      <sensor name="camera_4" type="rgbd_camera">
         <visualize>true</visualize>
         <update_rate>10</update_rate>
-        <topic>camera_4/image_raw</topic>
+        <topic>camera_4</topic>
         <gz_frame_id>camera_4_link</gz_frame_id>
         <camera>
           <camera_info_topic>camera_4/camera_info</camera_info_topic>
@@ -282,10 +282,10 @@
         </material>
       </visual>
 
-      <sensor name="camera_5" type="camera">
+      <sensor name="camera_5" type="rgbd_camera">
         <visualize>true</visualize>
         <update_rate>10</update_rate>
-        <topic>camera_5/image_raw</topic>
+        <topic>camera_5</topic>
         <gz_frame_id>camera_5_link</gz_frame_id>
         <camera>
           <camera_info_topic>camera_5/camera_info</camera_info_topic>
@@ -325,10 +325,10 @@
         </material>
       </visual>
 
-      <sensor name="camera_6" type="camera">
+      <sensor name="camera_6" type="rgbd_camera">
         <visualize>true</visualize>
         <update_rate>10</update_rate>
-        <topic>camera_6/image_raw</topic>
+        <topic>camera_6</topic>
         <gz_frame_id>camera_6_link</gz_frame_id>
         <camera>
           <camera_info_topic>camera_6/camera_info</camera_info_topic>

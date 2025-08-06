@@ -29,7 +29,8 @@
   gz_type_name: "gz.msgs.Odometry"
   direction: GZ_TO_ROS
 
-## Cameras
+## ---------------- Cameras -----------------------------
+## Camera Info
 # Camera 1
 - ros_topic_name: "camera_1/camera_info"
   gz_topic_name: "camera_1/camera_info"
@@ -70,4 +71,47 @@
   gz_topic_name: "camera_6/camera_info"
   ros_type_name: "sensor_msgs/msg/CameraInfo"
   gz_type_name: "gz.msgs.CameraInfo"
+  direction: GZ_TO_ROS
+
+## Camera Point Clouds
+# Camera 1
+- ros_topic_name: "/camera_1/points"
+  gz_topic_name: "/camera_1/points"
+  ros_type_name: "sensor_msgs/msg/PointCloud2"
+  gz_type_name: "gz.msgs.PointCloudPacked"
+  direction: GZ_TO_ROS
+
+# Camera 2
+- ros_topic_name: "/camera_2/points"
+  gz_topic_name: "/camera_2/points"
+  ros_type_name: "sensor_msgs/msg/PointCloud2"
+  gz_type_name: "gz.msgs.PointCloudPacked"
+  direction: GZ_TO_ROS
+
+# Camera 3
+- ros_topic_name: "/camera_3/points"
+  gz_topic_name: "/camera_3/points"
+  ros_type_name: "sensor_msgs/msg/PointCloud2"
+  gz_type_name: "gz.msgs.PointCloudPacked"
+  direction: GZ_TO_ROS
+
+# Camera 4
+- ros_topic_name: "/camera_4/points"
+  gz_topic_name: "/camera_4/points"
+  ros_type_name: "sensor_msgs/msg/PointCloud2"
+  gz_type_name: "gz.msgs.PointCloudPacked"
+  direction: GZ_TO_ROS
+
+# Camera 5
+- ros_topic_name: "/camera_5/points"
+  gz_topic_name: "/camera_5/points"
+  ros_type_name: "sensor_msgs/msg/PointCloud2"
+  gz_type_name: "gz.msgs.PointCloudPacked"
+  direction: GZ_TO_ROS
+
+# Camera 6
+- ros_topic_name: "/camera_6/points"
+  gz_topic_name: "/camera_6/points"
+  ros_type_name: "sensor_msgs/msg/PointCloud2"
+  gz_type_name: "gz.msgs.PointCloudPacked"
   direction: GZ_TO_ROS
