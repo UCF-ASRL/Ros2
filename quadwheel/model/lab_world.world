@@ -109,12 +109,11 @@
           <emissive>0.0 0.0 0.0 1.0</emissive>
         </material>
       </visual>
-
       <sensor name="camera_1" type="rgbd_camera">
         <visualize>true</visualize>
         <update_rate>10</update_rate>
         <topic>camera_1</topic>
-        <gz_frame_id>camera_1_link</gz_frame_id>
+        <gz_frame_id>camera_1_optical</gz_frame_id>
         <camera>
           <camera_info_topic>camera_1/camera_info</camera_info_topic>
           <horizontal_fov>1.089</horizontal_fov>
@@ -129,6 +128,11 @@
           </clip>
         </camera>
       </sensor>
+    </link>
+
+    <link name='camera_1_optical'>
+      <pose relative_to="camera_1_link">0 0 0 -1.5707 0 -1.5707</pose>
+      <gravity>0</gravity>
     </link>
   </model>
 

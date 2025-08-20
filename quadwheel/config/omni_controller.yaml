@@ -22,7 +22,7 @@ omni_cont:
       wheels_radius: 0.0762 
       sum_of_robot_center_projection_on_X_Y_axis: 0.3692 #This is the distance from the robot center to wheel center
 
-    base_frame_id: "base_link"
+    base_frame_id: "base_footprint"
     odom_frame_id: "odom"
     enable_odom_tf: true
     

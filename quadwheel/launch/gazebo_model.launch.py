@@ -85,7 +85,7 @@ def generate_launch_description():
 	robot_state_publisher_node = Node(
    		package='robot_state_publisher',
         executable='robot_state_publisher',
-		output='both',
+		output='screen',
         	parameters=[{'robot_description': robot_description,
 			     'use_sim_time': True,
 				 'use_ros2_control': True
@@ -171,16 +171,21 @@ def generate_launch_description():
 	camera_1_transform_node = Node(
 		package="tf2_ros",
 		executable="static_transform_publisher",
-		arguments = ["-2.44","-2.64","2.54","0.785","0.785","0", "odom", "camera_1_link"],
+		arguments = ["-2.44","-2.64","2.54",
+			   "-0.1463","0.3534","0.3534","0.8537",
+				 "odom", "camera_1_optical"], #X Y Z YAW PITCH ROLL ??????
 	)
 
 	camera_2_transform_node = Node(
 		package="tf2_ros",
 		executable="static_transform_publisher",
-		arguments = ["-2.44","-2.64","2.54","0.785","0.785","0", "odom", "camera_2_link"],
+		arguments = ["0","-2.64","2.54","1.5707","0.785","0", "odom", "camera_2_link"],
 	)
 	
-	#-----------------------------------------------------------
+
+
+
+	#-----------------------------------------------------------S
 	# here we create an empty launch description object
 	ld = LaunchDescription()
 
@@ -201,5 +206,7 @@ def generate_launch_description():
 
 	ld.add_action(camera_1_transform_node)
 	ld.add_action(camera_2_transform_node)
+
+	
 
 	return ld

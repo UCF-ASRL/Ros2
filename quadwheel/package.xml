@@ -32,6 +32,9 @@
   <exec_depend>controller_manager</exec_depend>
   <exec_depend>ros2_controllers_test_nodes</exec_depend>
 
+  <!-- Mapping -->
+  <exec_depend>depthimage_to_laserscan</exec_depend>
+
   <export>
     <build_type>ament_cmake</build_type>
     <gazebo_ros gazebo_model_path="${prefix}/.."/>

@@ -13,8 +13,8 @@
   <!--Base Footprint-->
   <link name="base_footprint" />
   <joint name="base_to_footprint" type="fixed">
-    <parent link="base_link"/>
-    <child link="base_footprint"/>
+    <parent link="base_footprint"/>
+    <child link="base_link"/>
     <origin xyz="0 0 0" rpy="0 0 0" />
   </joint>
 
@@ -48,9 +48,10 @@
   </gazebo>
 
   <!--Wheel Rims -->
-  <xacro:connector name="1" parent="chassis" xyz="0.228 0.228 0.01" rpy="1.57 0 -0.7854"/>
-  <xacro:connector name="2" parent="chassis" xyz="0.228 -0.228 0.01" rpy="1.57 0 -2.3562"/>
-  <xacro:connector name="3" parent="chassis" xyz="-0.228 -0.228 0.01" rpy="1.57 0 -3.9270"/>
-  <xacro:connector name="4" parent="chassis" xyz="-0.228 0.228 0.01" rpy="1.57 0 -5.4978"/>
+  <xacro:connector name="1" parent="chassis" xyz="0.228 0.228 0.01" rpy="1.57 0 2.3562"/>  <!--Front Left-->
+  <xacro:connector name="2" parent="chassis" xyz="0.228 -0.228 0.01" rpy="1.57 0 0.7838"/> <!--Front Right-->
+  <xacro:connector name="3" parent="chassis" xyz="-0.228 -0.228 0.01" rpy="1.57 0 -0.7838"/>  <!--Back Right-->
+  <xacro:connector name="4" parent="chassis" xyz="-0.228 0.228 0.01" rpy="1.57 0 -2.3562"/> <!--Back Left -->
+
 
 </robot>
