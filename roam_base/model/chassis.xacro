@@ -1,6 +1,6 @@
 <?xml version='1.0'?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
-  <xacro:include filename="$(find quadwheel)/model/connector.xacro"/>
+  <xacro:include filename="$(find roam_base)/model/connector.xacro"/>
   
   <!-- World Link -->
   <link name="base_link" />
@@ -23,7 +23,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="file://$(find quadwheel)/meshes/chassis.stl" />
+        <mesh filename="file://$(find roam_base)/meshes/chassis.stl" />
       </geometry>
       <material name="">
         <color rgba="1 1 0 1" />

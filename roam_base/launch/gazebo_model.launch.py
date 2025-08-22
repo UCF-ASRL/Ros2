@@ -1,4 +1,4 @@
-# Gazebo Launch File for Quadwheel Base
+# Gazebo Launch File for Roam Base
 # Created By Bastian Weiss
 #---------------------------------------------
 # Desired Output: Creates quadwheel base model in rviz and gazebo.
@@ -36,8 +36,8 @@ def generate_launch_description():
 
 	# Names
 	# Base Files
-	package_name = 'quadwheel'
-	robot_name = '4_wheel_omni'
+	package_name = 'roam_base'
+	robot_name = 'roam_base'
 	world_name = 'lab_world.world'
 	urdf_name = 'main.xacro'
 	urdf_folder_name = 'model'

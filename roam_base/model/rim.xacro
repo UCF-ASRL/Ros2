@@ -1,6 +1,6 @@
 <?xml version='1.0'?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
-<xacro:include filename="$(find quadwheel)/model/roller.xacro"/>
+<xacro:include filename="$(find roam_base)/model/roller.xacro"/>
 <xacro:macro name="rim" params="name parent xyz rpy">
   <link name="rim_${name}_link">
     <inertial>

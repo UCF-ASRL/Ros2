@@ -1,0 +1,17 @@
+<?xml version='1.0'?>
+<robot name="roam_base" xmlns:xacro="http://www.ros.org/wiki/xacro">
+ 
+  <!-- Robot -->
+  <xacro:include filename="$(find roam_base)/model/chassis.xacro"/>
+  
+  <!-- Control -->
+  <xacro:include filename="$(find roam_base)/model/ros2_control.xacro"/>
+
+  <!-- Cameras -->
+  <!--<xacro:include filename="$(find quadwheel)/model/cameras.xacro"/>-->
+
+  <!-- Arm -->
+  
+
+
+</robot>
