@@ -33,6 +33,9 @@
   <exec_depend>controller_manager</exec_depend>
   <exec_depend>ros2_controllers_test_nodes</exec_depend>
 
+  <!--Testing-->
+  <exec_depend>teleop_twist_keyboard</exec_depend>
+
 
   <export>
     <build_type>ament_cmake</build_type>

@@ -13,7 +13,7 @@ find_package(ament_cmake REQUIRED)
 
 #Install file to share
 install(
-  DIRECTORY launch model meshes config include
+  DIRECTORY launch model meshes config 
   DESTINATION share/${PROJECT_NAME}
 )
 

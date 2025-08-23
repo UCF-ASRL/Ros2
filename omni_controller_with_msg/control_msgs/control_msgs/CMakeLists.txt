@@ -20,26 +20,7 @@ find_package(std_msgs REQUIRED)
 find_package(trajectory_msgs REQUIRED)
 
 set(msg_files
-  msg/AdmittanceControllerState.msg
-  msg/DynamicInterfaceGroupValues.msg
-  msg/DynamicInterfaceValues.msg
-  msg/DynamicJointState.msg
-  msg/GripperCommand.msg
-  msg/InterfaceValue.msg
-  msg/JointComponentTolerance.msg
-  msg/JointControllerState.msg
-  msg/JointJog.msg
-  msg/JointTolerance.msg
-  msg/JointTrajectoryControllerState.msg
-  msg/MecanumDriveControllerState.msg
   msg/OmniwheelDriveControllerState.msg
-  msg/MultiDOFCommand.msg
-  msg/MultiDOFStateStamped.msg
-  msg/PidState.msg
-  msg/SingleDOFState.msg
-  msg/SingleDOFStateStamped.msg
-  msg/SteeringControllerStatus.msg
-  msg/SpeedScalingFactor.msg
 )
 
 set(action_files
