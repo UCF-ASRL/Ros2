@@ -33,7 +33,7 @@
   <exec_depend>joint_state_broadcaster</exec_depend>
   <exec_depend>controller_manager</exec_depend>
   <exec_depend>ros2_controllers_test_nodes</exec_depend>
-  <exec_depend>ros2_controlcli</exec_depend>
+  <exec_depend>ros2_control</exec_depend>
 
   <!--Testing-->
   <exec_depend>teleop_twist_keyboard</exec_depend>
