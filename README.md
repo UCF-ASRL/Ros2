@@ -7,9 +7,9 @@ TODO
 ## Maintainer
 Ros2 setup created by Bastian Weiss
 
-Email: ba379142@ucf.edu
+Email: [ba379142@ucf.edu]
 
-## Setup
+# Setup
 ## Docker Image
 Install Docker
 [https://docs.docker.com/install/]
@@ -31,8 +31,14 @@ rocker --ssh --x11 ws_asrl_roam --name asrl_roam
 ## Build the Ros2 Enviroment
 ```
 source /opt/ros/jazzy/setup.bash
+```
+```
 colcon build
+```
+```
 source install/setup.bash
+```
+```
 ros2 launch roam_base gazebo_model.launch.py
 ```
 ## Control The Base with Keyboard Teleop
