@@ -31,14 +31,8 @@ rocker --ssh --x11 ws_asrl_roam --name asrl_roam
 ## Build the Ros2 Enviroment
 ```
 source /opt/ros/jazzy/setup.bash
-```
-```
 colcon build
-```
-```
 source install/setup.bash
-```
-```
 ros2 launch roam_base gazebo_model.launch.py
 ```
 ## Control The Base with Keyboard Teleop
