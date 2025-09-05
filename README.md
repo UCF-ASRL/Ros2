@@ -42,14 +42,15 @@ docker exec -it asrl_roam bash
 ```
 source /opt/ros/jazzy/setup.bash
 ```
+```
+ros2 run teleop_twist_keyboard teleop_twist_keyboard --ros-args -p stamped:=true
+```
 
 ## Build the Ros2 Enviroment for Physical Base
 ```
 source /opt/ros/jazzy/setup.bash
 colcon build
 source install/setup.bash
-ros2 launch roam_ardunio_harware real_model.launch.py
+ros2 launch roam_ardunio_hardware real_model.launch.py
 ```
-```
-ros2 run teleop_twist_keyboard teleop_twist_keyboard --ros-args -p stamped:=true
-```
+
