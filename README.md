@@ -51,6 +51,6 @@ ros2 run teleop_twist_keyboard teleop_twist_keyboard --ros-args -p stamped:=true
 source /opt/ros/jazzy/setup.bash
 colcon build
 source install/setup.bash
-ros2 launch roam_ardunio_hardware real_model.launch.py
+ros2 launch roam_arduino_hardware real_model.launch.py
 ```
 
