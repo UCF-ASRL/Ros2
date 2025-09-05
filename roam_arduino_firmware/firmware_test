@@ -135,8 +135,8 @@ void loop() {
           //digitalWrite(rev2, LOW);
           //digitalWrite(fwd3, LOW);
           //digitalWrite(rev3, LOW);
-          digitalWrite(fwd4, LOW);
-          digitalWrite(rev4, LOW);
+          digitalWrite(sp4, LOW);
+          digitalWrite(relay4, LOW);
           //analogWrite(rpm1, 0);
           //analogWrite(rpm2, 0);
           //analogWrite(rpm3, 0);
