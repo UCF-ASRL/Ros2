@@ -30,10 +30,6 @@ from ros_gz_sim.actions import GzServer # type: ignore
 # Xacro
 import xacro # type: ignore
 
-# For Delay
-from launch.actions import RegisterEventHandler
-from launch.event_handlers import OnProcessExit
-
 #----------------------------------------------------------------------------
 # Launch
 def generate_launch_description():
@@ -115,7 +111,7 @@ def generate_launch_description():
 
 	# delay rviz start after `joint_state_broadcaster`
     delay_rviz_after_joint_state_broadcaster_spawner = RegisterEventHandler(
-        event_handler=OnProcessExit(
+		event_handler=OnProcessExit(
             target_action=joint_broad_spawner,
             on_exit=[rviz_node],
         )
