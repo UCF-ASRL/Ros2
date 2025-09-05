@@ -25,9 +25,7 @@ docker image pull ros:jazzy
 docker image build --no-cache -t ws_asrl_roam .
 ```
 ```
-rocker --ssh --x11\
---devices /dev/ttyUSB0 /dev/ttyACM0 \
-ws_asrl_roam --name asrl_roam
+rocker --ssh --x11 --devices /dev/ttyUSB0 /dev/ttyACM0 -- ws_asrl_roam --name asrl_roam
 ```
 
 ## Build the Ros2 Enviroment
