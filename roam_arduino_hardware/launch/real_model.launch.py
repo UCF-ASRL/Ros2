@@ -109,24 +109,6 @@ def generate_launch_description():
 			],
 	)
 
-	# Static Transfrom Publishers for Camera Point Clouds
-	camera_1_transform_node = Node(
-		package="tf2_ros",
-		executable="static_transform_publisher",
-		arguments = ["-2.44","-2.64","2.54",
-			   "-0.1463","0.3534","0.3534","0.8537",
-				 "odom", "camera_1_optical"], #X Y Z YAW PITCH ROLL ??????
-	)
-
-	camera_2_transform_node = Node(
-		package="tf2_ros",
-		executable="static_transform_publisher",
-		arguments = ["0","-2.64","2.54","1.5707","0.785","0", "odom", "camera_2_link"],
-	)
-	
-
-
-
 	#-----------------------------------------------------------S
 	# here we create an empty launch description object
 	ld = LaunchDescription()
@@ -139,9 +121,4 @@ def generate_launch_description():
 	ld.add_action(joint_broad_spawner)
 	ld.add_action(controller_spawner)
 	
-	ld.add_action(camera_1_transform_node)
-	ld.add_action(camera_2_transform_node)
-
-	
-
 	return ld
