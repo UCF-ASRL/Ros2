@@ -112,18 +112,18 @@ def generate_launch_description():
 	# delay rviz start after `joint_state_broadcaster`
     delay_rviz_after_joint_state_broadcaster_spawner = RegisterEventHandler(
 		event_handler=OnProcessExit(
-            target_action=joint_broad_spawner,
-            on_exit=[rviz_node],
-        )
-    )
+			target_action=joint_broad_spawner,
+			on_exit=[rviz_node],
+		)
+	)
 
     # delay start of robot_controller after `joint_state_broadcaster`
     delay_motor_controller_spawner_after_joint_state_broadcaster_spawner = RegisterEventHandler(
-        event_handler=OnProcessExit(
-            target_action=joint_broad_spawner,
-            on_exit=[controller_spawner],
-        )
-    )
+		event_handler=OnProcessExit(
+			target_action=joint_broad_spawner,
+			on_exit=[controller_spawner],
+		)
+	)
 
 	#-----------------------------------------------------------S
 	# here we create an empty launch description object
