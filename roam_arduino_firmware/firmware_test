@@ -12,8 +12,8 @@
 //#define rev3 9   // Motor3 reverse direction pin
 
 #define rpm4 8  // Motor4 PWM pin
-#define fwd4 11   // Motor4 forward direction pin
-#define rev4 12   // Motor4 reverse direction pin
+#define sp4 21   // Motor4 speed
+#define relay4 12   // Motor4 relay
 
 float rpmValue1 = 0, rpmValue2 = 0, rpmValue3 = 0, rpmValue4 = 0;
 float rpmValue1_f,rpmValue2_f,rpmValue3_f,rpmValue4_f;
@@ -32,8 +32,8 @@ void setup() {
   //pinMode(fwd3, OUTPUT);
   //pinMode(rev3, OUTPUT);
   pinMode(rpm4, OUTPUT);
-  pinMode(fwd4, OUTPUT);
-  pinMode(rev4, OUTPUT);
+  pinMode(sp4, OUTPUT);
+  pinMode(relay4, OUTPUT);
 
   // Set initial motor state
   //digitalWrite(fwd1, LOW);
@@ -48,8 +48,8 @@ void setup() {
   //digitalWrite(rev3, LOW);
   //analogWrite(rpm3, 0);
 
-  digitalWrite(fwd4, LOW);
-  digitalWrite(rev4, LOW);
+  digitalWrite(relay4, LOW);
+  digitalWrite(sp4, LOW);
   analogWrite(rpm4, 0);
 
   // Initialize serial communication
@@ -121,11 +121,9 @@ void loop() {
         // Control Motor 4
         analogWrite(rpm4, rpmValue4_f);
         if (dirValue4 == 0) {
-          digitalWrite(fwd4, LOW);
-          digitalWrite(rev4, HIGH);
+          digitalWrite(relay4, LOW);
         } else {
-          digitalWrite(fwd4, HIGH);
-          digitalWrite(rev4, LOW);
+          digitalWrite(relay4, HIGH);
         }
 
  
