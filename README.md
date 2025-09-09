@@ -25,10 +25,10 @@ docker image pull ros:jazzy
 docker image build --no-cache -t ws_asrl_roam .
 ```
 ```
-rocker --ssh --x11 ws_asrl_roam --name asrl_roam
+rocker --ssh --x11 --devices /dev/ttyUSB0 /dev/ttyACM0 -- ws_asrl_roam --name asrl_roam
 ```
 
-## Build the Ros2 Enviroment
+## Build the Ros2 Enviroment for Gazbeo
 ```
 source /opt/ros/jazzy/setup.bash
 colcon build
@@ -45,3 +45,12 @@ source /opt/ros/jazzy/setup.bash
 ```
 ros2 run teleop_twist_keyboard teleop_twist_keyboard --ros-args -p stamped:=true
 ```
+
+## Build the Ros2 Enviroment for Physical Base
+```
+source /opt/ros/jazzy/setup.bash
+colcon build
+source install/setup.bash
+ros2 launch roam_arduino_hardware real_model.launch.py
+```
+
