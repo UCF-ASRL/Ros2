@@ -1,0 +1,7 @@
+<library path="roam_arduino_hardware">
+  <class name="roam_arduino_hardware/ROAMARD" type="roam_arduino_hardware::ROAMARD" base_class_type="hardware_interface::SystemInterface">
+    <description>
+		  ROS2 Control System Driver for roam base.
+    </description>
+  </class>
+</library>

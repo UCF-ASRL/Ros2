@@ -7,9 +7,6 @@
   <!-- Control -->
   <xacro:include filename="$(find roam_arduino_hardware)/model/ros2_control.xacro"/>
 
-  <!-- Cameras -->
-  <!--<xacro:include filename="$(find quadwheel)/model/cameras.xacro"/>-->
-
   <!-- Arm -->
   
 

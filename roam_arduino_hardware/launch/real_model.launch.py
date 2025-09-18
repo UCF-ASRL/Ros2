@@ -36,7 +36,7 @@ def generate_launch_description():
 
 	# Names
 	# Base Files
-	package_name = 'roam_base'
+	package_name = 'roam_arduino_hardware'
 	urdf_name = 'main.xacro'
 	urdf_folder_name = 'model'
 	rviz_param_file = 'rviz_config.rviz'
@@ -86,6 +86,16 @@ def generate_launch_description():
     	)
 	
 	## Controller Section 
+	controller_manager_node = Node(
+    package="controller_manager",
+    executable="ros2_control_node",
+    parameters=[
+        {'robot_description': robot_description},
+        path_to_controller
+    ],
+    output="both",
+	)
+
 	joint_broad_spawner = Node(
         package='controller_manager',
         executable='spawner',
@@ -132,10 +142,9 @@ def generate_launch_description():
 	# Add Launch Nodes
 	ld.add_action(robot_state_publisher_node)
 	ld.add_action(joint_state_publisher_gui_node)
-	ld.add_action(rviz_node)
 
+	ld.add_action(controller_manager_node)
 	ld.add_action(joint_broad_spawner)
-	ld.add_action(controller_spawner)
 
 	ld.add_action(delay_rviz_after_joint_state_broadcaster_spawner)
 	ld.add_action(delay_motor_controller_spawner_after_joint_state_broadcaster_spawner)
