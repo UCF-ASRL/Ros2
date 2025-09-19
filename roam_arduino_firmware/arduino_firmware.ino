@@ -1,4 +1,5 @@
 //Pinout
+//RPM pins are for pwm, Hall Pins are for Reading back to the controller (CURRENTLY UNUSED), Relay Pins are for direction
 #define rpm1 1   // Motor1 PWM pin
 #define h1 2   // Motor1 hall pin
 #define r1 3   // Motor1 relay pin
