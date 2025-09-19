@@ -4,6 +4,7 @@
 #include <memory>
 #include <string>
 #include <vector>
+#include <termios.h>
 
 #include "hardware_interface/handle.hpp"
 #include "hardware_interface/hardware_info.hpp"
@@ -57,10 +58,13 @@ private:
   //Serial Port
   int SerialPort = -1;
   int num_joints = -1;
+  struct termios tty;
 
   //Serial Init
   int WriteToSerial(const unsigned char* buf, int nBytes);
   int ReadSerial(unsigned char* buf, int nBytes);
+
+
 };
 
 }  // namespace ros2_control_demo_example_2

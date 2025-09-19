@@ -63,24 +63,21 @@ def generate_launch_description():
         executable='robot_state_publisher',
 		output='screen',
         	parameters=[{'robot_description': robot_description,
-			     'use_sim_time': True,
 				 'use_ros2_control': True
 		           }],     
 	)
 	
     # Joint State Publisher
-	joint_state_publisher_gui_node = Node(
-        	package='joint_state_publisher_gui',
-          	executable='joint_state_publisher_gui',
-        	name='joint_state_publisher_gui',
-			parameters=[{'use_sim_time' : True}],
-	)
+	#joint_state_publisher_gui_node = Node(
+    #    	package='joint_state_publisher_gui',
+    #      	executable='joint_state_publisher_gui',
+    #    	name='joint_state_publisher_gui'
+	#)
 	
 	# RVIZ
 	rviz_node = Node(
     		package='rviz2',
         	executable='rviz2',
-        	name='rviz2',
         	output='screen',
 			arguments=['-d',path_to_rviz_params],
     	)
@@ -141,7 +138,7 @@ def generate_launch_description():
 
 	# Add Launch Nodes
 	ld.add_action(robot_state_publisher_node)
-	ld.add_action(joint_state_publisher_gui_node)
+	#ld.add_action(joint_state_publisher_gui_node)
 
 	ld.add_action(controller_manager_node)
 	ld.add_action(joint_broad_spawner)
