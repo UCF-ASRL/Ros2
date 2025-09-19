@@ -1,5 +1,3 @@
-#include "Arduino.h"
-
 //Pinout
 #define rpm1 1   // Motor1 PWM pin
 #define h1 2   // Motor1 hall pin
