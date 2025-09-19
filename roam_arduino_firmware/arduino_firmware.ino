@@ -1,19 +1,21 @@
+#include "Arduino.h"
+
 //Pinout
 #define rpm1 1   // Motor1 PWM pin
-#define fwd1 2   // Motor1 forward direction pin
-#define rev1 3   // Motor1 reverse direction pin
+#define h1 2   // Motor1 hall pin
+#define r1 3   // Motor1 relay pin
 
 #define rpm2 4  // Motor2 PWM pin
-#define fwd2 5   // Motor2 forward direction pin
-#define rev2 6   // Motor2 reverse direction pin
+#define h2 5   // Motor2 hall pin
+#define r2 6   // Motor2 relay pin
 
 #define rpm3 7  // Motor3 PWM pin
-#define fwd3 8   // Motor3 forward direction pin
-#define rev3 9   // Motor3 reverse direction pin
+#define h3 8   // Motor3 hall pin
+#define r3 9   // Motor3 relay pin
 
 #define rpm4 10  // Motor4 PWM pin
-#define fwd4 11   // Motor4 forward direction pin
-#define rev4 12   // Motor4 reverse direction pin
+#define h4 11   // Motor4 hall pin
+#define r4 12   // Motor4 relay pin
 
 float rpmValue1 = 0, rpmValue2 = 0, rpmValue3 = 0, rpmValue4 = 0;
 float rpmValue1_f,rpmValue2_f,rpmValue3_f,rpmValue4_f;
@@ -23,33 +25,22 @@ float feedbackCurrent1 = 0, feedbackCurrent2 = 0, feedbackCurrent3 = 0, feedback
 void setup() {
   // Set pin modes for motor control
   pinMode(rpm1, OUTPUT);
-  pinMode(fwd1, OUTPUT);
-  pinMode(rev1, OUTPUT);
+  pinMode(h1, OUTPUT);
+  pinMode(r1, OUTPUT);
   pinMode(rpm2, OUTPUT);
-  pinMode(fwd2, OUTPUT);
-  pinMode(rev2, OUTPUT);
+  pinMode(h2, OUTPUT);
+  pinMode(r2, OUTPUT);
   pinMode(rpm3, OUTPUT);
-  pinMode(fwd3, OUTPUT);
-  pinMode(rev3, OUTPUT);
+  pinMode(h3, OUTPUT);
+  pinMode(r3, OUTPUT);
   pinMode(rpm4, OUTPUT);
-  pinMode(fwd4, OUTPUT);
-  pinMode(rev4, OUTPUT);
+  pinMode(h4, OUTPUT);
+  pinMode(r4, OUTPUT);
 
   // Set initial motor state
-  digitalWrite(fwd1, LOW);
-  digitalWrite(rev1, LOW);
   analogWrite(rpm1, 0);
-
-  digitalWrite(fwd2, LOW);
-  digitalWrite(rev2, LOW);
   analogWrite(rpm2, 0);
-
-  digitalWrite(fwd3, LOW);
-  digitalWrite(rev3, LOW);
   analogWrite(rpm3, 0);
-
-  digitalWrite(fwd4, LOW);
-  digitalWrite(rev4, LOW);
   analogWrite(rpm4, 0);
 
   // Initialize serial communication
@@ -89,55 +80,52 @@ void loop() {
 
         // Control Motor 1
         analogWrite(rpm1, rpmValue1_f);
+        // Forward
         if (dirValue1 == 0) {
-          digitalWrite(fwd1, HIGH);
-          digitalWrite(rev1, LOW);
+          digitalWrite(r1, HIGH);
         } else {
-          digitalWrite(fwd1, LOW);
-          digitalWrite(rev1, HIGH);
+          //Reverse
+          digitalWrite(r1, LOW);
         }
 
         // Control Motor 2
         analogWrite(rpm2, rpmValue2_f);
+        // Forward
         if (dirValue2 == 0) {
-          digitalWrite(fwd2, LOW);
-          digitalWrite(rev2, HIGH);
+          digitalWrite(r2, HIGH);
         } else {
-          digitalWrite(fwd2, HIGH);
-          digitalWrite(rev2, LOW);
+          //Reverse
+          digitalWrite(r2, LOW);
         }
 
         // Control Motor 3
         analogWrite(rpm3, rpmValue3_f);
+        // Forward
         if (dirValue3 == 0) {
-          digitalWrite(fwd3, LOW);
-          digitalWrite(rev3, HIGH);
+          digitalWrite(r3, HIGH);
         } else {
-          digitalWrite(fwd3, HIGH);
-          digitalWrite(rev3, LOW);
+          //Reverse
+          digitalWrite(r3, LOW);
         }
 
         // Control Motor 4
         analogWrite(rpm4, rpmValue4_f);
+        // Forward
         if (dirValue4 == 0) {
-          digitalWrite(fwd4, LOW);
-          digitalWrite(rev4, HIGH);
+          digitalWrite(r4, HIGH);
         } else {
-          digitalWrite(fwd4, HIGH);
-          digitalWrite(rev4, LOW);
+          //Reverse
+          digitalWrite(r4, LOW);
         }
 
- 
+
+        //Motor Shutoff
         if (rpmValue1 == 0 && rpmValue2 == 0 && rpmValue3 == 0 && rpmValue4 == 0) {
           // Set all digital pins to LOW if both RPM values are zero
-          digitalWrite(fwd1, LOW);
-          digitalWrite(rev1, LOW);
-          digitalWrite(fwd2, LOW);
-          digitalWrite(rev2, LOW);
-          digitalWrite(fwd3, LOW);
-          digitalWrite(rev3, LOW);
-          digitalWrite(fwd4, LOW);
-          digitalWrite(rev4, LOW);
+          digitalWrite(r1, LOW);
+          digitalWrite(r2, LOW);
+          digitalWrite(r3, LOW);
+          digitalWrite(r4, LOW);
           analogWrite(rpm1, 0);
           analogWrite(rpm2, 0);
           analogWrite(rpm3, 0);
