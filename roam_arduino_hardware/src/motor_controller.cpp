@@ -243,10 +243,10 @@ hardware_interface::return_type ROAMARD::write(const rclcpp::Time & /*time*/, co
   }
 
   // Log the left and right joint commands for debugging purposes
-  RCLCPP_INFO(rclcpp::get_logger("arduino_actuator_interface"), "Motor 1: %.2f, Direction: %d", velocity_commands_.at(0), (velocity_commands_.at(0) >= 0) ? 0 : 1);
-  RCLCPP_INFO(rclcpp::get_logger("arduino_actuator_interface"), "Motor 2: %.2f, Direction: %d", velocity_commands_.at(1), (velocity_commands_.at(1) >= 0) ? 0 : 1);
-  RCLCPP_INFO(rclcpp::get_logger("arduino_actuator_interface"), "Motor 3: %.2f, Direction: %d", velocity_commands_.at(2), (velocity_commands_.at(2) >= 0) ? 0 : 1);
-  RCLCPP_INFO(rclcpp::get_logger("arduino_actuator_interface"), "Motor 4: %.2f, Direction: %d", velocity_commands_.at(3), (velocity_commands_.at(3) >= 0) ? 0 : 1);
+  //RCLCPP_INFO(rclcpp::get_logger("arduino_actuator_interface"), "Motor 1: %.2f, Direction: %d", velocity_commands_.at(0), (velocity_commands_.at(0) >= 0) ? 0 : 1);
+  //RCLCPP_INFO(rclcpp::get_logger("arduino_actuator_interface"), "Motor 2: %.2f, Direction: %d", velocity_commands_.at(1), (velocity_commands_.at(1) >= 0) ? 0 : 1);
+  //RCLCPP_INFO(rclcpp::get_logger("arduino_actuator_interface"), "Motor 3: %.2f, Direction: %d", velocity_commands_.at(2), (velocity_commands_.at(2) >= 0) ? 0 : 1);
+  //RCLCPP_INFO(rclcpp::get_logger("arduino_actuator_interface"), "Motor 4: %.2f, Direction: %d", velocity_commands_.at(3), (velocity_commands_.at(3) >= 0) ? 0 : 1);
 
   return hardware_interface::return_type::OK;
 }
