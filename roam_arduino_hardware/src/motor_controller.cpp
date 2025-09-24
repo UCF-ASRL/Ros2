@@ -29,7 +29,7 @@ hardware_interface::CallbackReturn ROAMARD::on_init(const hardware_interface::Ha
   {
   
 
-    std::string port = "/dev/ttyACM0";
+    std::string port = "/dev/ttyACM1";
     SerialPort = open(port.c_str(), O_RDWR);
     if (SerialPort < 0)
     {
