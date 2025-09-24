@@ -4,7 +4,7 @@
     <ros2_control name="arduino_motor_ros2_control" type="system">
         <hardware>
             <plugin>roam_arduino_hardware/ROAMARD</plugin>
-                <param name="port">/dev/ttyACM0</param>
+                <param name="port">/dev/ttyACM1</param>
         </hardware>
         <joint name="chassis_C1_joint">
             <command_interface name="velocity">
