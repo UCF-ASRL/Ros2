@@ -30,7 +30,7 @@ hardware_interface::CallbackReturn ROAMARD::on_init(const hardware_interface::Ha
   
 
     std::string port = "/dev/ttyACM1";
-    SerialPort = open(port.c_str(), O_RDWR);
+    SerialPort = open(port.c_str(), O_RDWR | O_NOCTTY | O_NONBLOCK);
     if (SerialPort < 0)
     {
 
@@ -81,21 +81,10 @@ hardware_interface::CallbackReturn ROAMARD::on_init(const hardware_interface::Ha
     }
     RCLCPP_INFO(rclcpp::get_logger("CustomHardware"), "SERIAL PORT OPENED: %d! WAITING...", SerialPort);
 
-    auto t_start = std::chrono::high_resolution_clock::now();
-    while(true)
-    {
-        auto t_end = std::chrono::high_resolution_clock::now();
-        double elapsed_time_ms = std::chrono::duration<double, std::milli>(t_end - t_start).count();
-        if(elapsed_time_ms > 3000)
-        {
-            break;
-        }
-    }
+    //Wait
+    std::this_thread::sleep_for(std::chrono::seconds(3));
 
-
-   
   }
-
 
   catch(std::exception &e)
   {
@@ -204,6 +193,16 @@ int ROAMARD::ReadSerial(unsigned char* buf, int nBytes)
     }
     return n;
 }
+// Read From Serial (Maybe)
+hardware_interface::return_type ROAMARD::read(const rclcpp::Time & /*time*/, const rclcpp::Duration & period)
+{
+  // For now, assume perfect control (simulated feedback)
+    for (size_t i = 0; i < velocity_commands_.size(); i++) {
+        velocity_states_[i] = velocity_commands_[i]; // pretend measured = commanded
+        position_states_[i] += velocity_commands_[i] * period.seconds(); // integrate position
+    }
+    return hardware_interface::return_type::OK;
+}
 
 // Write To Serial
 hardware_interface::return_type ROAMARD::write(const rclcpp::Time & /*time*/, const rclcpp::Duration & /*period*/) {
@@ -211,30 +210,44 @@ hardware_interface::return_type ROAMARD::write(const rclcpp::Time & /*time*/, co
 
   try{
     // Get the four velocity commands
-    float rpmValue1 = static_cast<float>(velocity_commands_.at(0));
-    int dirValue1 = (rpmValue1 >= 0) ? 0 : 1;  // 0 for forward, 1 for reverse
+    //Right now, ROS 1 = Physical 3
+    //           ROS 2 = Physical 2
+    //           ROS 3 = Physical 1
+    //           ROS 4 = Physical 4
+    float rpmValue3 = static_cast<float>(velocity_commands_.at(0));
+    //int dirValue1 = (rpmValue1 >= 0) ? 0 : 1;  // 0 for forward, 1 for reverse
 
     float rpmValue2 = static_cast<float>(velocity_commands_.at(1));
-    int dirValue2 = (rpmValue2 >= 0) ? 0 : 1;  // 0 for forward, 1 for reverse
+    //int dirValue2 = (rpmValue2 >= 0) ? 0 : 1;  // 0 for forward, 1 for reverse
 
-    float rpmValue3 = static_cast<float>(velocity_commands_.at(2));
-    int dirValue3 = (rpmValue3 >= 0) ? 0 : 1;  // 0 for forward, 1 for reverse
+    float rpmValue1 = static_cast<float>(velocity_commands_.at(2));
+    //int dirValue3 = (rpmValue3 >= 0) ? 0 : 1;  // 0 for forward, 1 for reverse
 
     float rpmValue4 = static_cast<float>(velocity_commands_.at(3));
-    int dirValue4 = (rpmValue4 >= 0) ? 0 : 1;  // 0 for forward, 1 for reverse
+    //int dirValue4 = (rpmValue4 >= 0) ? 0 : 1;  // 0 for forward, 1 for reverse
 
     // Create a string with the command data
-    std::string data = std::to_string(rpmValue1) + " " + std::to_string(dirValue1) + " " +
-                       std::to_string(rpmValue2) + " " + std::to_string(dirValue2) + " " +
-                       std::to_string(rpmValue3) + " " + std::to_string(dirValue3) + " " +
-                       std::to_string(rpmValue4) + " " + std::to_string(dirValue4) + "\n";
+    std::ostringstream ss;
+    //ss << std::fixed << std:: setprecision(2)
+    //  << rpmValue1 << " " << dirValue1 << " "
+    //  << rpmValue2 << " " << dirValue2 << " "
+    //  << rpmValue3 << " " << dirValue3 << " "
+    //  << rpmValue4 << " " << dirValue4 << "\n";
+    ss << std::fixed << std::setprecision(1) << rpmValue1 << " " << rpmValue2 << " " << rpmValue3 << " " << rpmValue4 << "\n";
+
+    std::string data = ss.str();
+
+
+    //std::string data = std::to_string(rpmValue1) + " " + std::to_string(dirValue1) + " " +
+    //                   std::to_string(rpmValue2) + " " + std::to_string(dirValue2) + " " +
+    //                   std::to_string(rpmValue3) + " " + std::to_string(dirValue3) + " " +
+    //                   std::to_string(rpmValue4) + " " + std::to_string(dirValue4) + "\n";
 
     // Write the command data to the serial port
     WriteToSerial(reinterpret_cast<const unsigned char*>(data.c_str()), data.length());
-    //RCLCPP_INFO(rclcpp::get_logger("arduino_actuator_interface"), "Writing %s", data.c_str());
+    tcdrain(SerialPort);
+    RCLCPP_INFO(rclcpp::get_logger("arduino_actuator_interface"), "Writing %s", data.c_str());
 
-    // Throttle the data transfer to avoid overwhelming the Arduino
-    //std::this_thread::sleep_for(std::chrono::milliseconds(100)); // Adjust the sleep duration as needed
   }
   catch (const std::exception& e) {
     // Handle any exceptions that occur during the write process
@@ -249,17 +262,6 @@ hardware_interface::return_type ROAMARD::write(const rclcpp::Time & /*time*/, co
   //RCLCPP_INFO(rclcpp::get_logger("arduino_actuator_interface"), "Motor 4: %.2f, Direction: %d", velocity_commands_.at(3), (velocity_commands_.at(3) >= 0) ? 0 : 1);
 
   return hardware_interface::return_type::OK;
-}
-
-// Read From Serial (Maybe)
-hardware_interface::return_type ROAMARD::read(const rclcpp::Time & /*time*/, const rclcpp::Duration & period)
-{
-  // For now, assume perfect control (simulated feedback)
-    for (size_t i = 0; i < velocity_commands_.size(); i++) {
-        velocity_states_[i] = velocity_commands_[i]; // pretend measured = commanded
-        position_states_[i] += velocity_commands_[i] * period.seconds(); // integrate position
-    }
-    return hardware_interface::return_type::OK;
 }
 
 }  // namespace roam_arduino_hardware

@@ -1,19 +1,19 @@
 //Pinout
 //RPM pins are for pwm, Hall Pins are for Reading back to the controller (CURRENTLY UNUSED), Relay Pins are for direction
-#define rpm1 1   // Motor1 PWM pin
+#define rpm1 6   // Motor1 PWM pin
 #define h1 2   // Motor1 hall pin
-#define r1 3   // Motor1 relay pin
+#define r1 9   // Motor1 relay pin
 
-#define rpm2 4  // Motor2 PWM pin
-#define h2 5   // Motor2 hall pin
-#define r2 6   // Motor2 relay pin
+#define rpm2 5  // Motor2 PWM pin
+#define h2 3   // Motor2 hall pin
+#define r2 14   // Motor2 relay pin
 
 #define rpm3 7  // Motor3 PWM pin
-#define h3 8   // Motor3 hall pin
-#define r3 9   // Motor3 relay pin
+#define h3 20   // Motor3 hall pin
+#define r3 15   // Motor3 relay pin
 
-#define rpm4 10  // Motor4 PWM pin
-#define h4 11   // Motor4 hall pin
+#define rpm4 8  // Motor4 PWM pin
+#define h4 21   // Motor4 hall pin
 #define r4 12   // Motor4 relay pin
 
 float rpmValue1 = 0, rpmValue2 = 0, rpmValue3 = 0, rpmValue4 = 0;
@@ -57,66 +57,89 @@ void loop() {
       int firstSpace = input.indexOf(' ');
       int secondSpace = input.indexOf(' ', firstSpace + 1);
       int thirdSpace = input.indexOf(' ', secondSpace + 1);
-      int forthSpace = input.indexOf(' ', thirdSpace + 1);
-      int fifthSpace = input.indexOf(' ', forthSpace + 1);
+      //int forthSpace = input.indexOf(' ', thirdSpace + 1);
+      //int fifthSpace = input.indexOf(' ', forthSpace + 1);
+      //int sixthSpace = input.indexOf(' ', fifthSpace + 1);
+      //int seventhSpace = input.indexOf(' ', sixthSpace + 1);
 
-      if (firstSpace != -1 && secondSpace != -1 && thirdSpace != -1 && forthSpace != -1 && fifthSpace != -1) {
-        rpmValue1 = input.substring(0, firstSpace).toFloat();
-        rpmValue1_f = (rpmValue1);
-        dirValue1 = input.substring(firstSpace + 1, secondSpace).toInt();
+      if (firstSpace != -1 && secondSpace != -1 && thirdSpace != -1) {
+      //  rpmValue1 = input.substring(0, firstSpace).toFloat();
+      //  rpmValue1_f = constrain(map(rpmValue1,-10,10,-255,255),-255,255);
+      //  dirValue1 = input.substring(firstSpace + 1, secondSpace).toInt();
         
-        rpmValue2 = input.substring(secondSpace + 1, thirdSpace).toFloat();
-        rpmValue2_f = (rpmValue2);
-        dirValue2 = input.substring(thirdSpace + 1).toInt();
+      //  rpmValue2 = input.substring(secondSpace + 1, thirdSpace).toFloat();
+      //  rpmValue2_f = constrain(map(rpmValue2,-10,10,-255,255),-255,255);
+      //  dirValue2 = input.substring(thirdSpace + 1,forthSpace).toInt();
 
-        rpmValue3 = input.substring(thirdSpace + 1, forthSpace).toFloat();
-        rpmValue3_f = (rpmValue3);
-        dirValue3 = input.substring(forthSpace + 1).toInt();
+      //  rpmValue3 = input.substring(forthSpace + 1, fifthSpace).toFloat();
+      //  rpmValue3_f = constrain(map(rpmValue3,-10,10,-255,255),-255,255);
+      //  dirValue3 = input.substring(fifthSpace + 1, sixthSpace).toInt();
 
-        rpmValue4 = input.substring(forthSpace + 1, fifthSpace).toFloat();
-        rpmValue4_f = (rpmValue4);
-        dirValue4 = input.substring(fifthSpace + 1).toInt();
+      //  rpmValue4 = input.substring(sixthSpace + 1, seventhSpace).toFloat();
+      //  rpmValue4_f = constrain(map(rpmValue4,-10,10,-255,255),-255,255);
+      //  dirValue4 = input.substring(seventhSpace + 1).toInt();
+
+        rpmValue1 = input.substring(0, firstSpace).toFloat();
+        rpmValue1_f = constrain(map(rpmValue1,-10,10,-255,255),-255,255);
+
+        rpmValue2 = input.substring(firstSpace + 1, secondSpace).toFloat();
+        rpmValue2_f = constrain(map(rpmValue2,-10,10,-255,255),-255,255);
+
+        rpmValue3 = input.substring(secondSpace + 1, thirdSpace).toFloat();
+        rpmValue3_f = constrain(map(rpmValue3,-10,10,-255,255),-255,255);
+
+        rpmValue4 = input.substring(thirdSpace + 1).toFloat();
+        rpmValue4_f = constrain(map(rpmValue4,-10,10,-255,255),-255,255);
+
+
 
         // Control Motor 1
-        analogWrite(rpm1, rpmValue1_f);
+        analogWrite(rpm1, abs(rpmValue1_f));
         // Forward
-        if (dirValue1 == 0) {
+        if (rpmValue1_f > 0) {
           digitalWrite(r1, HIGH);
+          dirValue1 = 0;
         } else {
           //Reverse
           digitalWrite(r1, LOW);
+          dirValue1 = 1;
         }
 
         // Control Motor 2
-        analogWrite(rpm2, rpmValue2_f);
+        analogWrite(rpm2, abs(rpmValue2_f));
         // Forward
-        if (dirValue2 == 0) {
+        if (rpmValue2_f > 0) {
           digitalWrite(r2, HIGH);
+          dirValue2 = 0;
         } else {
           //Reverse
           digitalWrite(r2, LOW);
+          dirValue2 = 1;
         }
 
         // Control Motor 3
-        analogWrite(rpm3, rpmValue3_f);
+        analogWrite(rpm3, abs(rpmValue3_f));
         // Forward
-        if (dirValue3 == 0) {
+        if (rpmValue3_f > 0) {
           digitalWrite(r3, HIGH);
+          dirValue3 = 0;
         } else {
           //Reverse
           digitalWrite(r3, LOW);
+          dirValue3 = 1;
         }
 
         // Control Motor 4
-        analogWrite(rpm4, rpmValue4_f);
+        analogWrite(rpm4, abs(rpmValue4_f));
         // Forward
-        if (dirValue4 == 0) {
+        if (rpmValue4_f > 0) {
           digitalWrite(r4, HIGH);
+          dirValue4 = 0;
         } else {
           //Reverse
           digitalWrite(r4, LOW);
+          dirValue4 = 1;
         }
-
 
         //Motor Shutoff
         if (rpmValue1 == 0 && rpmValue2 == 0 && rpmValue3 == 0 && rpmValue4 == 0) {
