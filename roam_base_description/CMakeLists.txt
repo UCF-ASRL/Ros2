@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.8)
-project(roam_base)
+project(roam_base_description)
 
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
@@ -13,7 +13,7 @@ find_package(ament_cmake REQUIRED)
 
 #Install file to share
 install(
-  DIRECTORY launch model meshes config 
+  DIRECTORY model meshes
   DESTINATION share/${PROJECT_NAME}
 )
 

@@ -41,7 +41,7 @@
 
     <gazebo>
         <plugin name="gz_ros2_control::GazeboSimROS2ControlPlugin" filename="gz_ros2_control-system">
-            <parameters>$(find roam_base)/config/omni_controller.yaml</parameters>
+            <parameters>$(find roam_base_gazebo)/config/omni_controller.yaml</parameters>
         </plugin>
     </gazebo>
 

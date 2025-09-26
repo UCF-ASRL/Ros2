@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>roam_base</name>
+  <name>roam_base_description</name>
   <version>0.0.0</version>
   <description>TODO: Package description</description>
   <maintainer email="bastianweiss@todo.todo">bastianweiss</maintainer>
@@ -41,8 +41,5 @@
 
   <export>
     <build_type>ament_cmake</build_type>
-    <gazebo_ros gazebo_model_path="${prefix}/.."/>
-    <gazebo_ros gazebo_media_path="${prefix}/media"/>
-    <gazebo_ros plugin_path="${prefix}/plugins"/>
   </export>
 </package>

@@ -36,8 +36,8 @@ def generate_launch_description():
 
 	# Names
 	# Base Files
-	package_name = 'roam_base'
-	robot_name = 'roam_base'
+	package_name = 'roam_base_gazebo'
+	robot_name = 'ASRL_ROAM'
 	world_name = 'lab_world.world'
 	urdf_name = 'main.xacro'
 	urdf_folder_name = 'model'
