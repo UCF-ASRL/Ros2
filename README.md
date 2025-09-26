@@ -62,7 +62,9 @@ Press: Ctrl+A, K, Enter
 ```
 cat /dev/ttyACM1
 ```
-Step 5: Launch Ros2 Hardware
+Step 5: Close Arduino IDE
+
+Step 6: Launch Ros2 Hardware
 ```
 source /opt/ros/jazzy/setup.bash
 colcon build
