@@ -9,7 +9,7 @@ Ros2 setup created by Bastian Weiss
 
 Email: ba379142@ucf.edu
 
-## Setup
+# Setup
 ## Docker Image
 Install Docker
 [https://docs.docker.com/install/]
