@@ -54,7 +54,7 @@ joint_limits:
 
   #Base virtual joints --------------------------------
   base_to_world/x:
-    has_position_limits: true
+    has_position_limits: false
     min_position: -10.0
     max_position: 10.0
     has_velocity_limits: true
@@ -63,7 +63,7 @@ joint_limits:
     max_acceleration: 2.0
 
   base_to_world/y:
-    has_position_limits: true
+    has_position_limits: false
     min_position: -10.0
     max_position: 10.0
     has_velocity_limits: true
