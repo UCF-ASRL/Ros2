@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="roam_urdf">
+    <xacro:arg name="initial_positions_file" default="initial_positions.yaml" />
+
+    <!-- Import roam_urdf urdf file -->
+    <xacro:include filename="$(find roam_base_description)/model/main.xacro" />
+
+    <!-- Import control_xacro -->
+    <xacro:include filename="roam_urdf.ros2_control.xacro" />
+
+
+    <xacro:roam_urdf_ros2_control name="FakeSystem" initial_positions_file="$(arg initial_positions_file)"/>
+
+</robot>

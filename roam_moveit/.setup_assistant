@@ -1,0 +1,27 @@
+moveit_setup_assistant_config:
+  urdf:
+    package: roam_base_description
+    relative_path: model/main.xacro
+  srdf:
+    relative_path: config/roam_urdf.srdf
+  package_settings:
+    author_name: Bastian Weiss
+    author_email: ba379142@ucf.edu
+    generated_timestamp: 1759506734
+  control_xacro:
+    command:
+      - position
+      - velocity
+    state:
+      - position
+      - velocity
+  modified_urdf:
+    xacros:
+      - control_xacro
+  control_xacro:
+    command:
+      - position
+      - velocity
+    state:
+      - position
+      - velocity

@@ -75,6 +75,9 @@ def generate_launch_description():
     		description='Full path to the world model file to load'
 	)
 
+	#--------------------------------------------------------------------
+	#--------------------------------------------------------------------
+
 	# Launch Gazebo -  (-r -v4 is for debug, shudown closes everything when gazebo does.)
 	gz_server = IncludeLaunchDescription(gz_launch_path,
 		launch_arguments={'gz_args': [' -r -v4 ', path_to_world], 'on_exit_shutdown': 'true'}.items(),
@@ -92,13 +95,6 @@ def generate_launch_description():
 		           }],     
 	)
 		
-	#joint_state_publisher_gui_node = Node(
-    #    	package='joint_state_publisher_gui',
-    #   	executable='joint_state_publisher_gui',
-    #    	name='joint_state_publisher_gui',
-	#		parameters=[{'use_sim_time' : True}],
-	#)
-	
 	# RVIZ
 	rviz_node = Node(
     		package='rviz2',
@@ -181,21 +177,26 @@ def generate_launch_description():
 		executable="static_transform_publisher",
 		arguments = ["0","-2.64","2.54","1.5707","0.785","0", "odom", "camera_2_link"],
 	)
-	
 
-
+	# Mapping
+	static_map_pub_node = Node(
+		package="tf2_ros",
+		executable="static_transform_publisher",
+		arguments = ["0","0","0","0","0","0", "map", "odom"],
+	)
 
 	#-----------------------------------------------------------S
 	# here we create an empty launch description object
 	ld = LaunchDescription()
 
 	# Add Launch Nodes
+	# Launch Configs
 	ld.add_action(declare_world_cmd)
+
 	ld.add_action(gz_server)
 	ld.add_action(spawn_model_node)
 	ld.add_action(robot_state_publisher_node)
-	# ld.add_action(joint_state_publisher_node)
-	# ld.add_action(joint_state_publisher_gui_node)
+
 	ld.add_action(rviz_node)
 
 	ld.add_action(joint_broad_spawner)
@@ -207,6 +208,6 @@ def generate_launch_description():
 	ld.add_action(camera_1_transform_node)
 	ld.add_action(camera_2_transform_node)
 
-	
+	ld.add_action(static_map_pub_node)
 
 	return ld

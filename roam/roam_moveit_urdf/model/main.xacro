@@ -1,0 +1,24 @@
+<?xml version='1.0'?>
+<robot name="roam_moveit_urdf" xmlns:xacro="http://www.ros.org/wiki/xacro">
+ 
+  <!-- Robot -->
+  <xacro:include filename="$(find roam_base_description)/model/chassis.xacro"/>
+  
+  <!-- Control -->
+  <xacro:include filename="$(find roam_base_gazebo)/model/ros2_control.xacro"/>
+
+  <!-- Cameras -->
+  <!--<xacro:include filename="$(find quadwheel)/model/cameras.xacro"/>-->
+
+  <!-- Arm -->
+  <xacro:arg name="ar_model" default="mk3" />
+  <xacro:arg name="tf_prefix" default="arm_" />
+  <xacro:arg name="arm_base_link" default="chassis" />
+
+  <xacro:include filename="$(find annin_ar4_description)/urdf/ar_gazebo.urdf.xacro"/>
+  <joint name="arm_mount_joint" type="fixed">
+    <parent link="chassis"/>
+    <child link="arm_base_link"/>
+    <origin xyz="0 0 0.4" rpy="0 0 0" />
+  </joint>
+</robot>

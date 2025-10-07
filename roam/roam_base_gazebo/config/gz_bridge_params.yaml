@@ -16,11 +16,11 @@
 #  direction: GZ_TO_ROS
 
 # Joint States
-#- ros_topic_name: "/joint_states"
-#  gz_topic_name: "/world/lab_world/model/main/joint_state"
-#  ros_type_name: "sensor_msgs/msg/JointState"
-#  gz_type_name: "gz.msgs.Model"
-#  direction: GZ_TO_ROS
+- ros_topic_name: "/joint_states"
+  gz_topic_name: "/world/lab_world/model/main/joint_state"
+  ros_type_name: "sensor_msgs/msg/JointState"
+  gz_type_name: "gz.msgs.Model"
+  direction: GZ_TO_ROS
 
 # Odom
 - ros_topic_name: "/omni_cont/odometry"
