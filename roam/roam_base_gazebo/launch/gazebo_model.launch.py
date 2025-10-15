@@ -46,7 +46,7 @@ def generate_launch_description():
 	# Controller Setup
 	## WHEN CHANGING CONTROLLERS MAKE SURE TO CHANGE THESE VALUES !!AND!! THE CONTROLLER FILE NAME IN ROS2_CONTROL.XACRO FILE!!!!
 	controller_file = 'omni_controller.yaml'
-	controller_name = 'omni_cont'
+	base_controller_name = 'omni_cont'
 	bridge_param_file = 'gz_bridge_params.yaml'
 
 	
@@ -130,7 +130,7 @@ def generate_launch_description():
 		executable='spawner',
 		parameters=[{'robot_description': robot_description}],
         arguments=[
-			controller_name,
+			base_controller_name,
 			'--param-file',
 			path_to_controller,
             '--controller-ros-args',

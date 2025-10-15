@@ -9,6 +9,6 @@
     <xacro:include filename="roam_urdf.ros2_control.xacro" />
 
 
-    <xacro:roam_urdf_ros2_control name="FakeSystem" initial_positions_file="$(arg initial_positions_file)"/>
+    <xacro:roam_urdf_ros2_control name="GazeboSystem" initial_positions_file="$(arg initial_positions_file)"/>
 
 </robot>

@@ -1,5 +1,4 @@
 # Default initial positions for roam_urdf's ros2_control fake system
-
 initial_positions:
   arm_joint_1: 0
   arm_joint_2: 0
