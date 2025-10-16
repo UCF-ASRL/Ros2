@@ -16,18 +16,17 @@
         <joint name="arm_joint_4"/>
         <joint name="arm_joint_5"/>
         <joint name="arm_joint_6"/>
-        <joint name="arm_mount_joint"/>
-        <joint name="arm_ee_joint"/>
     </group>
     <group name="base">
-        <joint name="base_to_world"/>
+        <joint name="base_x"/>
+        <joint name="base_y"/>
+        <joint name="base_theta"/>
+        <controller name="fake_base_controller"/>
     </group>
     <group name="base_with_arm">
         <group name="arm"/>
         <group name="base"/>
     </group>
-    <!--VIRTUAL JOINT: Purpose: this element defines a virtual joint between a robot link and an external frame of reference (considered fixed with respect to the robot)-->
-    <virtual_joint name="base_to_world" type="planar" parent_frame="odom" child_link="base_footprint"/>
     <!--PASSIVE JOINT: Purpose: this element is used to mark joints that are not actuated-->
     <passive_joint name="roller_10_rim_wheel_1_joint"/>
     <passive_joint name="roller_11_rim_wheel_1_joint"/>

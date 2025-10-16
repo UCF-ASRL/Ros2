@@ -13,21 +13,15 @@
   </joint>
 
   <!--Base Footprint-->
-  <link name="base_footprint" />
+  <!--<link name="base_footprint" />
   <joint name="base_to_footprint" type="fixed">
     <parent link="base_footprint"/>
     <child link="base_link"/>
     <origin xyz="0 0 0" rpy="0 0 0" />
-  </joint>
+  </joint> -->
 
   <!-- Cameras -->
   <!--<xacro:include filename="$(find quadwheel)/model/cameras.xacro"/>-->
 
-  <!-- Arm -->
-  <!--<xacro:include filename="$(find annin_ar4_description)/urdf/ar_gazebo.urdf.xacro"/>-->
-  <!--<joint name="arm_mount_joint" type="fixed">
-    <parent link="chassis_link"/>
-    <child link="ar4_base_link"/>
-    <origin xyz="0 0 0.4" rpy="0 0 0" />
-  </joint> -->
+  
 </robot>

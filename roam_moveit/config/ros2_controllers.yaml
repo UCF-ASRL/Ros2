@@ -6,11 +6,15 @@ controller_manager:
     arm_controller:
       type: joint_trajectory_controller/JointTrajectoryController
 
+    fake_base_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+
     joint_broad:
       type: joint_state_broadcaster/JointStateBroadcaster
 
     omni_cont:
       type: omniwheel_drive_controller/OmniwheelDriveController
+
 
 arm_controller:
   ros__parameters:
@@ -28,6 +32,17 @@ arm_controller:
       - position
       - velocity
     allow_nonzero_velocity_at_trajectory_end: true
+
+fake_base_controller:
+  ros__parameters:
+      joints:
+        - base_x
+        - base_y
+        - base_theta
+      command_interfaces:
+        - position   # we won't use these, but MoveIt requires them
+      state_interfaces:
+        - position
 
 omni_cont:
   ros__parameters:

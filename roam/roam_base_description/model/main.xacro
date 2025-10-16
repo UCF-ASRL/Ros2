@@ -12,12 +12,11 @@
   </joint>
 
   <!-- Base Footprint -->
-  <link name="base_footprint" />
-  <joint name="base_to_footprint" type="fixed">
+  <!--<joint name="base_to_footprint" type="fixed">
     <parent link="base_footprint"/>
     <child link="base_link"/>
     <origin xyz="0 0 0" rpy="0 0 0" />
-  </joint>
+  </joint> -->
 
   <!-- Cameras -->
   <!--<xacro:include filename="$(find quadwheel)/model/cameras.xacro"/>-->

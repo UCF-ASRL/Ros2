@@ -1,4 +1,3 @@
-# MoveIt uses this configuration for controller management
 move_group:
   ros__parameters:
     moveit_controller_manager: moveit_simple_controller_manager/MoveItSimpleControllerManager
@@ -6,7 +5,9 @@ move_group:
     moveit_simple_controller_manager:
       controller_names:
         - arm_controller
+        - fake_base_controller
 
+      # -------------------- ARM CONTROLLER --------------------
       arm_controller:
         type: FollowJointTrajectory
         joints:
@@ -18,3 +19,14 @@ move_group:
           - arm_joint_6
         action_ns: follow_joint_trajectory
         default: true
+
+      # -------------------- BASE CONTROLLER --------------------
+      fake_base_controller:
+        type: FollowJointTrajectory
+        joints:
+          - base_x
+          - base_y
+          - base_theta
+        action_ns: follow_joint_trajectory
+        default: true
+

@@ -81,15 +81,6 @@ def generate_launch_description():
         }],
     )
 
-    # Clean Up Rollers
-    dummy_joint_node = Node(
-    package="joint_state_publisher",
-    executable="joint_state_publisher",
-    output="screen",
-    parameters=[os.path.join(get_package_share_directory("roam_moveit"), "config", "dummy_rollers.yaml")]
-    )
-
-
     # Spawn Gazebo Model
     spawn_model_node = Node(
         package='ros_gz_sim',
@@ -103,6 +94,11 @@ def generate_launch_description():
     )
 
     ## Controller Section
+    joint_broad_spawner = Node(
+        package='controller_manager',
+        executable='spawner',
+        arguments=["joint_broad"],
+    )
     # Controller Spawner
     base_controller_spawner = Node(
     package='controller_manager',
@@ -124,7 +120,14 @@ def generate_launch_description():
     output='screen',
     )
 
-
+    # Fake Base Controller Spawner
+    fake_base_controller_spawner = Node(
+    package='controller_manager',
+    executable='spawner',
+    arguments=['fake_base_controller', '--param-file', path_to_controller],
+    output='screen',
+    )
+   
     # Ros Gz Bridge
     ros_gz_bridge_node = Node(
         package='ros_gz_bridge',
@@ -135,6 +138,14 @@ def generate_launch_description():
             f'config_file:={path_to_bridge_params}',
         ],
     )
+
+    # Moveit Base Bridge
+    moveit_base_bridge_node = Node(
+    package='roam_base_bridge',
+    executable='trajectory_to_twist_bridge',
+    name='trajectory_to_twist_bridge',
+    output='screen'
+    )   
 
     # Camera Bridge
     ros_gz_image_bridge_node = Node(
@@ -166,10 +177,12 @@ def generate_launch_description():
     ld.add_action(gz_server)
     ld.add_action(spawn_model_node)
     ld.add_action(robot_state_publisher_node)
-    ld.add_action(dummy_joint_node)
 
+    ld.add_action(joint_broad_spawner)
     ld.add_action(base_controller_spawner)
     ld.add_action(arm_controller_spawner)
+    ld.add_action(fake_base_controller_spawner)
+    ld.add_action(moveit_base_bridge_node)
 
     ld.add_action(ros_gz_bridge_node)
     ld.add_action(ros_gz_image_bridge_node)

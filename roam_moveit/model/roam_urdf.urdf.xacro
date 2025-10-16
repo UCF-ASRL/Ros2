@@ -5,6 +5,55 @@
     <!-- Import roam_urdf urdf file -->
     <xacro:include filename="$(find roam_base_description)/model/main.xacro" />
 
+    <!-- X linear joint -->
+    <link name="base_footprint" >
+        <inertial>
+        <mass value="0.001"/>
+        <origin xyz="0 0 0"/>
+        <inertia ixx="0.00001" iyy="0.00001" izz="0.00001" ixy="0" ixz="0" iyz="0"/>
+        </inertial>
+    </link>
+    <link name="base_x_link">
+        <inertial>
+        <mass value="0.001"/>
+        <origin xyz="0 0 0"/>
+        <inertia ixx="0.00001" iyy="0.00001" izz="0.00001" ixy="0" ixz="0" iyz="0"/>
+        </inertial>
+    </link>
+    <joint name="base_x" type="prismatic">
+        <parent link="base_footprint"/>
+        <child link="base_x_link"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <axis xyz="1 0 0"/>
+        <limit effort="0.01" velocity="1.5" lower="-10.0" upper="10.0"/>
+    </joint>
+
+    <!-- Y linear joint -->
+    <link name="base_y_link">
+        <inertial>
+        <mass value="0.001"/>
+        <origin xyz="0 0 0"/>
+        <inertia ixx="0.00001" iyy="0.00001" izz="0.00001" ixy="0" ixz="0" iyz="0"/>
+        </inertial>
+    </link>
+    <joint name="base_y" type="prismatic">
+        <parent link="base_x_link"/>
+        <child link="base_y_link"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <axis xyz="0 1 0"/>
+        <limit effort="0.01" velocity="1.5" lower="-10.0" upper="10.0"/>
+    </joint>
+
+    <!-- Theta rotational joint -->
+    <joint name="base_theta" type="continuous">
+        <parent link="base_y_link"/>
+        <child link="base_link"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <axis xyz="0 0 1"/>
+        <limit effort="0.01" velocity="6.0"/>
+    </joint>
+
+
     <!-- Import control_xacro -->
     <xacro:include filename="roam_urdf.ros2_control.xacro" />
 
