@@ -72,10 +72,3 @@ source install/setup.bash
 ros2 launch roam_arduino_hardware real_model.launch.py
 ```
 
-source /opt/ros/jazzy/setup.bash
-cd ws_moveit
-source install/setup.bash
-cd
-cd ws_asrl_roam
-colcon build
-source install/setup.bash
