@@ -91,7 +91,9 @@ def generate_launch_description():
         "publish_robot_description_semantic": True,
         "monitored_planning_scene.filters.exclude_joints": ["roller_.*"],
         "monitored_planning_scene.filters.ignore_missing_joints": True,
+        "planning_frame": ["odom"],
     }
+
 
     # Start the actual move_group node/action server
     move_group_node = Node(

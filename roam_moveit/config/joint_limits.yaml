@@ -23,6 +23,7 @@ move_group:
           max_velocity: 1.0472 # 60 deg/s
         arm_joint_3:
           has_acceleration_limits: true
+
           max_acceleration: 0.5236 # 30 deg/s^2
           has_deceleration_limits: true
           max_deceleration: -0.5236 # 30 deg/s^2
@@ -51,27 +52,24 @@ move_group:
           max_velocity: 1.0472 # 60 deg/s
 
         #Base virtual joints --------------------------------
+        # Virtual base joint planning limits
         base_x:
-          has_position_limits: true
-          min_position: -10.0
-          max_position: 10.0
+          has_position_limits: false
           has_velocity_limits: true
-          max_velocity: 1.5        # m/s linear x
+          max_velocity: 1.5  # m/s linear x
           has_acceleration_limits: true
           max_acceleration: 2.0
 
         base_y:
-          has_position_limits: true
-          min_position: -10.0
-          max_position: 10.0
+          has_position_limits: false
           has_velocity_limits: true
-          max_velocity: 1.5        # m/s linear y
+          max_velocity: 1.5  # m/s linear y
           has_acceleration_limits: true
           max_acceleration: 2.0
 
         base_theta:
           has_position_limits: false
           has_velocity_limits: true
-          max_velocity: 6.0        # rad/s angular
+          max_velocity: 6.0   # rad/s angular
           has_acceleration_limits: true
           max_acceleration: 8.0

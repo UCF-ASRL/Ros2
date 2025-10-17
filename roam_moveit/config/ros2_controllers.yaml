@@ -43,6 +43,7 @@ fake_base_controller:
         - position   # we won't use these, but MoveIt requires them
       state_interfaces:
         - position
+      state_publish_rate: 0.0
 
 omni_cont:
   ros__parameters:
