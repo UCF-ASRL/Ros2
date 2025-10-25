@@ -27,4 +27,10 @@ install(TARGETS follow_path
   DESTINATION lib/${PROJECT_NAME}
 )
 
+# Install CSV files
+install(DIRECTORY
+  config
+  DESTINATION share/${PROJECT_NAME}
+)
+
 ament_package()
