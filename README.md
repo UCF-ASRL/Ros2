@@ -84,7 +84,7 @@ ros2 launch rome_moveit moveit_gazebo.launch.py
 ```
 Paths
 ```
-ros2 run rome_path_cpp follow_path.cpp
+ros2 run rome_path_cpp follow_path
 ```
 Options
 Shape
