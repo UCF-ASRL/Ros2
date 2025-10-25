@@ -1,7 +1,5 @@
-# Gazebo Launch File for rome Base
+# Gazebo Launch File for ROME
 # Created By Bastian Weiss
-#---------------------------------------------
-# Desired Output: Creates quadwheel base model in rviz and gazebo.
 #---------------------------------------------
 
 # Imports
@@ -67,18 +65,6 @@ def generate_launch_description():
             'gz_args': [' -r -v4 ', path_to_world],
             'on_exit_shutdown': 'true'
         }.items(),
-    )
-
-    # Robot State Publisher
-    robot_state_publisher_node = Node(
-        package='robot_state_publisher',
-        executable='robot_state_publisher',
-        output='screen',
-        parameters=[{
-            'robot_description': robot_description,
-            'use_sim_time': True,
-            'use_ros2_control': True
-        }],
     )
 
     # Spawn Gazebo Model
@@ -147,20 +133,6 @@ def generate_launch_description():
     output='screen'
     )   
 
-    # Camera Bridge
-    ros_gz_image_bridge_node = Node(
-        package="ros_gz_image",
-        executable="image_bridge",
-        arguments=[
-            "/camera_1/image",
-            "/camera_2/image",
-            "/camera_3/image",
-            "/camera_4/image",
-            "/camera_5/image",
-            "/camera_6/image",
-        ],
-    )
-
     # Static Map Publisher
     static_map_pub_node = Node(
         package="tf2_ros",
@@ -176,7 +148,6 @@ def generate_launch_description():
 
     ld.add_action(gz_server)
     ld.add_action(spawn_model_node)
-    ld.add_action(robot_state_publisher_node)
 
     ld.add_action(joint_broad_spawner)
     ld.add_action(base_controller_spawner)
@@ -185,7 +156,6 @@ def generate_launch_description():
     ld.add_action(moveit_base_bridge_node)
 
     ld.add_action(ros_gz_bridge_node)
-    ld.add_action(ros_gz_image_bridge_node)
     ld.add_action(static_map_pub_node)
 
     return ld

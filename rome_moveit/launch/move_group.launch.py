@@ -34,6 +34,18 @@ def generate_launch_description():
     robot_description_xml = xacro.process_file(path_to_urdf).toxml()
     robot_description = {"robot_description": robot_description_xml}
 
+    # Robot State Publisher
+    robot_state_publisher_node = Node(
+        package='robot_state_publisher',
+        executable='robot_state_publisher',
+        output='screen',
+        parameters=[{
+            'robot_description': robot_description_xml,
+            'use_sim_time': True,
+            'use_ros2_control': True
+        }],
+    )
+
     # MoveIt Configuration
     robot_description_semantic = {
     "robot_description_semantic": open(
@@ -64,6 +76,7 @@ def generate_launch_description():
         "default_planning_pipeline": "ompl",
         "planning_pipelines": ["ompl"],
         "ompl": ompl_planning_yaml,
+
     }
 
     # Trajectory Execution Configuration
@@ -93,7 +106,6 @@ def generate_launch_description():
         "monitored_planning_scene.filters.ignore_missing_joints": True,
         "planning_frame": ["odom"],
     }
-
 
     # Start the actual move_group node/action server
     move_group_node = Node(
@@ -134,5 +146,5 @@ def generate_launch_description():
         ],
     )
 
-    nodes_to_start = [move_group_node, rviz_node]
+    nodes_to_start = [robot_state_publisher_node, move_group_node, rviz_node]
     return LaunchDescription(nodes_to_start)

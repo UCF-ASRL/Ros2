@@ -16,6 +16,6 @@
   <joint name="arm_mount_joint" type="fixed">
     <parent link="chassis"/>
     <child link="arm_base_link"/>
-    <origin xyz="0 0 0." rpy="0 0 0" />
+    <origin xyz="0 0 0.133" rpy="0 0 0" />
   </joint>
 </robot>
