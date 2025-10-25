@@ -82,4 +82,18 @@ source install/setup.bash
 ros2 launch rome_moveit move_group.launch.py
 ros2 launch rome_moveit moveit_gazebo.launch.py
 ```
+Paths
+```
+ros2 run rome_path_cpp follow_path.cpp
+```
+Options
+Shape
+```
+--square
+--circle
+```
+Loop
+```
+--loop
+```
 
