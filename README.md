@@ -79,11 +79,15 @@ cd
 cd ws_asrl_rome
 colcon build
 source install/setup.bash
+```
+```
 ros2 launch rome_moveit move_group.launch.py
-ros2 launch rome_moveit moveit_gazebo.launch.py
 ```
 ```
 hardware:= gazebo or real
+```
+ros2 launch rome_moveit moveit_gazebo.launch.py
+```
 ```
 Paths
 ```
