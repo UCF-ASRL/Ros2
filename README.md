@@ -86,8 +86,11 @@ ros2 launch rome_moveit move_group.launch.py
 ```
 hardware:= gazebo or real
 ```
+```
 ros2 launch rome_moveit moveit_gazebo.launch.py
 ```
+```
+ros2 launch rome_moveit moveit_physical.launch.py
 ```
 Paths
 ```
