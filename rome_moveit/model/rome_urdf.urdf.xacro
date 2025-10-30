@@ -1,6 +1,8 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="rome_urdf">
     <xacro:arg name="initial_positions_file" default="initial_positions.yaml" />
+    <xacro:arg name="hardware" default="gazebo"/>
+    <xacro:property name="hardware" value="$(arg hardware)" />
 
     <!-- Import rome_urdf urdf file -->
     <xacro:include filename="$(find rome_base_description)/model/main.xacro" />
@@ -58,7 +60,13 @@
     </joint>
 
     <!-- Import control_xacro -->
-    <xacro:include filename="rome_urdf.ros2_control.xacro" />
-    <xacro:rome_urdf_ros2_control name="GazeboSystem" initial_positions_file="$(arg initial_positions_file)"/>
+    <xacro:if value="${hardware == 'gazebo'}">
+        <xacro:include filename="rome_gazebo.ros2_control.xacro" />
+        <xacro:rome_urdf_ros2_control name="GazeboSystem" initial_positions_file="$(arg initial_positions_file)"/>
+    </xacro:if>
+    <xacro:if value="${hardware == 'real'}">
+        <xacro:include filename="rome_physical.ros2_control.xacro" />
+        <xacro:rome_urdf_ros2_control name="RealSystem" initial_positions_file="$(arg initial_positions_file)"/>
+    </xacro:if>
 
 </robot>

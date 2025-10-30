@@ -1,0 +1,7 @@
+<library path="rome_arduino_hardware">
+  <class name="rome_arduino_hardware/ROMEARD" type="rome_arduino_hardware::ROMEARD" base_class_type="hardware_interface::SystemInterface">
+    <description>
+		  ROS2 Control System Driver for rome base.
+    </description>
+  </class>
+</library>

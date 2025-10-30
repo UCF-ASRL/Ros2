@@ -31,7 +31,18 @@ def load_yaml(package_name, file_name):
 def generate_launch_description():
     # Robot Description
     path_to_urdf = os.path.join(get_package_share_directory('rome_moveit'),'model','rome_urdf.urdf.xacro')
-    robot_description_xml = xacro.process_file(path_to_urdf).toxml()
+    # robot_description_xml = xacro.process_file(path_to_urdf).toxml()
+
+    hardware_choice = LaunchConfiguration("hardware")
+    robot_description_xml = Command([
+        PathJoinSubstitution([FindExecutable(name="xacro")]),
+        " ",
+        PathJoinSubstitution(path_to_urdf),
+        " ",
+        "hardware:=",
+        hardware_choice,
+    ])
+
     robot_description = {"robot_description": robot_description_xml}
 
     # Robot State Publisher
@@ -146,5 +157,14 @@ def generate_launch_description():
         ],
     )
 
-    nodes_to_start = [robot_state_publisher_node, move_group_node, rviz_node]
-    return LaunchDescription(nodes_to_start)
+    ld = LaunchDescription()
+    ld.add_action(
+        DeclareLaunchArgument("hardware",
+                              default_value="gazebo",
+                              choices=["gazebo","real"],
+                              description="Which hardware? Gazebo or Real?"))
+    
+    ld.add_action(robot_state_publisher_node)
+    ld.add_action(move_group_node)
+    ld.add_action(rviz_node)
+    return ld
