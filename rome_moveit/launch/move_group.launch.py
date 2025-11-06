@@ -34,13 +34,21 @@ def generate_launch_description():
     # robot_description_xml = xacro.process_file(path_to_urdf).toxml()
 
     hardware_choice = LaunchConfiguration("hardware")
+    base_port_choice = LaunchConfiguration("base_port")
+    arm_port_choice = LaunchConfiguration("arm_port")
     robot_description_xml = Command([
         PathJoinSubstitution([FindExecutable(name="xacro")]),
         " ",
-        PathJoinSubstitution(path_to_urdf),
+        path_to_urdf,
         " ",
         "hardware:=",
         hardware_choice,
+        " ",
+        "base_port:=",
+        base_port_choice,
+        " ",
+        "arm_port:=",
+        arm_port_choice,
     ])
 
     robot_description = {"robot_description": robot_description_xml}
@@ -163,6 +171,14 @@ def generate_launch_description():
                               default_value="gazebo",
                               choices=["gazebo","real"],
                               description="Which hardware? Gazebo or Real?"))
+    ld.add_action(
+        DeclareLaunchArgument("base_port",
+                              default_value="0",
+                              description="Which ACM Port for base?"))
+    ld.add_action(
+        DeclareLaunchArgument("arm_port",
+                              default_value="0",
+                              description="Which ACM Port for arm?"))
     
     ld.add_action(robot_state_publisher_node)
     ld.add_action(move_group_node)

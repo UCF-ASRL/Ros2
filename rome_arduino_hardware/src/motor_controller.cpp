@@ -27,10 +27,22 @@ hardware_interface::CallbackReturn ROMEARD::on_init(const hardware_interface::Ha
   //Add this
   try
   {
-  
+    std::string port = "/dev/ttyACM2";
+    
+    // Retry opening the port a few times
+    int attempts = 5;
+    for (int i = 0; i < attempts; ++i) {
+        SerialPort = open(port.c_str(), O_RDWR | O_NOCTTY | O_NONBLOCK);
+        if (SerialPort >= 0) break;
+        RCLCPP_WARN(rclcpp::get_logger("ROMEARD"), "Port %s not ready. Retrying...", port.c_str());
+        std::this_thread::sleep_for(std::chrono::milliseconds(500));
+    }
 
-    std::string port = "/dev/ttyACM1";
-    SerialPort = open(port.c_str(), O_RDWR | O_NOCTTY | O_NONBLOCK);
+    if (SerialPort < 0) {
+        RCLCPP_WARN(rclcpp::get_logger("ROMEARD"), "Arduino not connected. Running in fake mode.");
+        return CallbackReturn::SUCCESS;  // Do not block
+    }
+
     if (SerialPort < 0)
     {
 
@@ -246,7 +258,7 @@ hardware_interface::return_type ROMEARD::write(const rclcpp::Time & /*time*/, co
     // Write the command data to the serial port
     WriteToSerial(reinterpret_cast<const unsigned char*>(data.c_str()), data.length());
     tcdrain(SerialPort);
-    RCLCPP_INFO(rclcpp::get_logger("arduino_actuator_interface"), "Writing %s", data.c_str());
+    //RCLCPP_INFO(rclcpp::get_logger("arduino_actuator_interface"), "Writing %s", data.c_str());
 
   }
   catch (const std::exception& e) {

@@ -22,10 +22,10 @@ Install Rocker
 docker image pull ros:jazzy
 ```
 ```
-docker image build --no-cache -t ws_asrl_roam .
+docker image build --no-cache -t ws_asrl_rome .
 ```
 ```
-rocker --ssh --x11 --devices /dev/ttyUSB0 /dev/ttyACM1 --name asrl_roam ws_asrl_roam bash
+rocker --ssh --x11 --devices /dev/ttyUSB0 /dev/ttyACM1 --name asrl_rome ws_asrl_rome bash
 ```
 
 ## Build the Ros2 Enviroment for Gazbeo
@@ -33,7 +33,7 @@ rocker --ssh --x11 --devices /dev/ttyUSB0 /dev/ttyACM1 --name asrl_roam ws_asrl_
 source /opt/ros/jazzy/setup.bash
 colcon build
 source install/setup.bash
-ros2 launch roam_base_gazebo gazebo_model.launch.py
+ros2 launch rome_base_gazebo gazebo_model.launch.py
 ```
 ## Control The Base with Keyboard Teleop
 ```
@@ -69,7 +69,7 @@ Step 6: Launch Ros2 Hardware
 source /opt/ros/jazzy/setup.bash
 colcon build
 source install/setup.bash
-ros2 launch roam_arduino_hardware real_model.launch.py
+ros2 launch rome_arduino_hardware real_model.launch.py
 ```
 ```
 source /opt/ros/jazzy/setup.bash
@@ -79,8 +79,18 @@ cd
 cd ws_asrl_rome
 colcon build
 source install/setup.bash
+```
+```
 ros2 launch rome_moveit move_group.launch.py
+```
+```
+hardware:= gazebo or real
+```
+```
 ros2 launch rome_moveit moveit_gazebo.launch.py
+```
+```
+ros2 launch rome_moveit moveit_physical.launch.py
 ```
 Paths
 ```

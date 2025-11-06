@@ -1,7 +1,7 @@
 FROM ros:jazzy
 
-WORKDIR /ws_asrl_roam
-RUN mkdir -p /ws_asrl_roam/src && \
+WORKDIR /ws_asrl_rome
+RUN mkdir -p /ws_asrl_rome/src && \
   cd src && \
   git clone https://github.com/UCF-ASRL/Ros2.git .
 

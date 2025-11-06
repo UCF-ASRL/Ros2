@@ -30,14 +30,14 @@ const float MOTOR_STEPS_PER_DEG_MK3[] = {44.44444444, 55.55555556, 55.55555556,
                                          49.77777777, 21, 22.22222222};
 
 // set encoder pins
-Encoder encPos[6] = {Encoder(14, 15), Encoder(16, 17), Encoder(18, 19),
+Encoder encPos[6] = {Encoder(14, 15), Encoder(17, 16), Encoder(19, 18),
                      Encoder(0,0), Encoder(21, 20), Encoder(22, 23)};
 // +1 if encoder direction matches motor direction, -1 otherwise
-int ENC_DIR[] = {1, -1, -1, 1, 1, 1};
+int ENC_DIR[] = {1, 1, 1, 1, 1, 1};
 // +1 if encoder max value is at the minimum joint angle, 0 otherwise
-int ENC_MAX_AT_ANGLE_MIN[] = {0, 0, 1, 1, 1, 0};
+int ENC_MAX_AT_ANGLE_MIN[] = {0, 1, 0, 1, 1, 0};
 // motor steps * ENC_MULT = encoder steps (4000 steps/rev)cali
-const float ENC_MULT[] = {20.48, 20.48, 20.48, 10, 10.24, 10};
+const float ENC_MULT[] = {20.48, 10.24, 20.48, 10, 10.24, 10};
 
 // define axis limits in degrees, for calibration
 std::map<String, const int*> JOINT_LIMIT_MIN;
@@ -57,7 +57,7 @@ int JOINT_LIMIT_MAX_MK3[] = {170, 90, 52, 180, 105, 180};
 std::map<String, const int*> REST_MOTOR_STEPS;
 const int REST_MOTOR_STEPS_MK1[] = {7555, 2333, 4944, 7049, 2295, 3431};
 const int REST_MOTOR_STEPS_MK2[] = {7555, 2333, 4944, 7049, 2295, 3431};
-const int REST_MOTOR_STEPS_MK3[] = {8000, 2333, 3000, 8960, 2295, 4000};
+const int REST_MOTOR_STEPS_MK3[] = {8000, 2333, 3255, 8960, 2295, 4000};
 
 enum SM { STATE_TRAJ, STATE_ERR };
 SM STATE = STATE_TRAJ;
@@ -79,7 +79,7 @@ const float CAL_SPEED_MULT[] = {
 int ENC_RANGE_STEPS[NUM_JOINTS];
 
 // speed and acceleration settings
-float JOINT_MAX_SPEED[] = {60.0, 30.0, 30.0, 60.0, 30.0, 60.0};  // deg/s
+float JOINT_MAX_SPEED[] = {60.0, 60.0, 60.0, 60.0, 30.0, 60.0};  // deg/s
 float JOINT_MAX_ACCEL[] = {30.0, 30.0, 30.0, 30.0, 30.0, 30.0};  // deg/s^2
 char JOINT_NAMES[] = {'A', 'B', 'C', 'D', 'E', 'F'};
 

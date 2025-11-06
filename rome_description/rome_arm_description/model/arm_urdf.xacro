@@ -152,8 +152,8 @@
       <child link="arm_link_4"/>
       <axis xyz="0 0 -1"/>
       <limit
-        lower="-180"
-        upper="180"
+        lower="0"
+        upper="0"
         effort="-1"
         velocity="1.0472"
       />

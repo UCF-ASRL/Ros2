@@ -125,6 +125,16 @@ hardware_interface::return_type ARHardwareInterface::read(
     // apply offsets, convert from deg to rad for moveit
     joint_positions_[i] = degToRad(actuator_positions_[i] + joint_offsets_[i]);
     joint_velocities_[i] = degToRad(actuator_velocities_[i]);
+    //Temp fixes
+    if (i == 1 || i == 2) {
+      joint_positions_[i] = -joint_positions_[i];
+      joint_velocities_[i] = -joint_velocities_[i];
+    }
+    if (i == 3)
+    {
+      joint_positions_[i] = 0.0;
+      joint_velocities_[i] = 0.0;
+    }
   }
   return hardware_interface::return_type::OK;
 }
@@ -136,6 +146,11 @@ hardware_interface::return_type ARHardwareInterface::write(
     actuator_pos_commands_[i] =
         radToDeg(joint_position_commands_[i]) - joint_offsets_[i];
     actuator_vel_commands_[i] = radToDeg(joint_velocity_commands_[i]);
+    //Temp fix
+    if (i == 1 || i == 2) {
+      actuator_pos_commands_[i] = -actuator_pos_commands_[i];
+      actuator_vel_commands_[i] = -actuator_vel_commands_[i];
+    }
   }
   driver_.update(actuator_pos_commands_, actuator_vel_commands_,
                  actuator_positions_, actuator_velocities_);

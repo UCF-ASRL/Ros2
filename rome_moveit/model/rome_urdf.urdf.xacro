@@ -2,6 +2,8 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="rome_urdf">
     <xacro:arg name="initial_positions_file" default="initial_positions.yaml" />
     <xacro:arg name="hardware" default="gazebo"/>
+    <xacro:arg name="base_port" default="0"/>
+    <xacro:arg name="arm_port" default="0"/>
     <xacro:property name="hardware" value="$(arg hardware)" />
 
     <!-- Import rome_urdf urdf file -->
@@ -62,11 +64,16 @@
     <!-- Import control_xacro -->
     <xacro:if value="${hardware == 'gazebo'}">
         <xacro:include filename="rome_gazebo.ros2_control.xacro" />
-        <xacro:rome_urdf_ros2_control name="GazeboSystem" initial_positions_file="$(arg initial_positions_file)"/>
+        <xacro:rome_urdf_ros2_control_gz name="GazeboSystem" initial_positions_file="$(arg initial_positions_file)"/>
     </xacro:if>
     <xacro:if value="${hardware == 'real'}">
         <xacro:include filename="rome_physical.ros2_control.xacro" />
-        <xacro:rome_urdf_ros2_control name="RealSystem" initial_positions_file="$(arg initial_positions_file)"/>
+        <xacro:rome_urdf_ros2_control_real name="RealSystem" 
+            initial_positions_file="$(arg initial_positions_file)" 
+            base_port="$(arg base_port)" 
+            arm_port="$(arg arm_port)"
+            joint_offset_parameters_file="$(find annin_ar4_driver)/config/joint_offsets/mk3.yaml"
+        />
     </xacro:if>
 
 </robot>

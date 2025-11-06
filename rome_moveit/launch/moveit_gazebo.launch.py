@@ -43,9 +43,6 @@ def generate_launch_description():
     path_to_controller = os.path.join(get_package_share_directory(package_name), 'config', controller_file)
     path_to_bridge_params = os.path.join(get_package_share_directory(package_name), 'config', bridge_param_file)
 
-    # Robot Description 
-    robot_description = xacro.process_file(path_to_urdf).toxml()
-
     # Find ros_gz_sim package
     pkg_ros_gz_sim = get_package_share_directory('ros_gz_sim')
     gz_launch_path = PythonLaunchDescriptionSource(os.path.join(pkg_ros_gz_sim, 'launch', 'gz_sim.launch.py'))
